@@ -308,8 +308,8 @@ export default function BTCRegimeTracker() {
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="font-bold text-slate-100 tracking-tight text-3xl text-center">CB's BTC Bull/Bear Regime Checklist</h1>
-              <p className="text-slate-500 py-[10px] text-lg font-sans font-bold">When is Bitcoin cheap enough?</p>
+              <h1 className="font-bold text-slate-100 tracking-tight text-center text-2xl">CB's BTC Bull/Bear Regime Checklist</h1>
+              <p className="text-slate-500 py-[10px] text-lg font-sans font-bold">Is Bitcoin cheap enough?</p>
             </div>
             <button
               onClick={resetAll}
