@@ -221,8 +221,8 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndic
         <div className="flex items-center gap-3">
           <PhaseIcon className={`w-5 h-5 ${phaseStatus.color}`} />
           <div className="text-left">
-            <h3 className="font-bold text-slate-100 text-sm">{phase.title}</h3>
-            <p className="text-xs text-slate-500">{phase.subtitle}</p>
+            <h3 className="font-bold text-slate-100 text-lg">{phase.title}</h3>
+            <p className="text-slate-500 text-sm">{phase.subtitle}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -308,7 +308,7 @@ export default function BTCRegimeTracker() {
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="font-bold text-slate-100 tracking-tight text-3xl">How Do We Know When To Buy BTC?</h1>
+              <h1 className="font-bold text-slate-100 tracking-tight text-3xl text-center">How Do We Know When To Buy BTC?</h1>
               <p className="text-slate-500 py-[10px] text-lg font-sans font-bold">The CB's Bull/Bear Regime Checklist</p>
             </div>
             <button
@@ -333,9 +333,9 @@ export default function BTCRegimeTracker() {
               of {maxScore} possible ({minScore} to +{maxScore})
             </div>
             <div className="inline-block px-4 py-1.5 bg-black/30 rounded-full">
-              <span className="text-sm font-bold tracking-wide">{regime.label}</span>
+              <span className="font-bold tracking-wide text-xl">{regime.label}</span>
             </div>
-            <p className="text-xs text-white/80 mt-3 max-w-xs mx-auto">{regime.description}</p>
+            <p className="text-white/80 mt-3 max-w-xs mx-auto text-sm">{regime.description}</p>
           </div>
         </div>
 
@@ -355,15 +355,15 @@ export default function BTCRegimeTracker() {
         <div className="flex items-center justify-center gap-4 text-xs">
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-            <span className="text-slate-400">Bullish</span>
+            <span className="text-slate-400 text-lg">Bullish</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-            <span className="text-slate-400">Neutral</span>
+            <span className="text-slate-400 text-lg">Neutral</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-            <span className="text-slate-400">Bearish</span>
+            <span className="text-slate-400 text-lg">Bearish</span>
           </div>
         </div>
       </div>
