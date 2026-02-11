@@ -355,15 +355,15 @@ export default function BTCRegimeTracker() {
         <div className="flex items-center justify-center gap-4 text-xs">
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-            <span className="text-slate-400 text-lg">Bullish</span>
+            <span className="text-slate-400 text-base">Bullish</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-            <span className="text-slate-400 text-lg">Neutral</span>
+            <span className="text-slate-400 text-base">Neutral</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-            <span className="text-slate-400 text-lg">Bearish</span>
+            <span className="text-slate-400 text-base">Bearish</span>
           </div>
         </div>
       </div>
