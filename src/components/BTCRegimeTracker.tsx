@@ -27,7 +27,7 @@ const INDICATORS: Record<string, Phase> = {
     {
       id: "globalM2",
       name: "Global M2 Trend",
-      weight: 1,
+      weight: 2,
       icon: DollarSign,
       description: "Tracks the total money supply from major central banks (Fed, ECB, BOJ, PBOC). Bitcoin correlates strongly with global liquidity cycles.",
       bullishCondition: "90-day rate of change is positive or stabilizing. M2 growing 3-5% YoY.",
@@ -57,7 +57,8 @@ const INDICATORS: Record<string, Phase> = {
     { id: "twoHundredWeekMA", name: "200-Week Moving Average", weight: 3, icon: TrendingUp, description: "The 200-week moving average smooths out all short-term noise to show Bitcoin's true long-term trend.", bullishCondition: "Price at or below 200W MA (~$58K currently). Historically marks cycle bottoms.", bearishCondition: "Price extremely elevated above 200W MA (heatmap in red/orange zone).", whyItMatters: "BTC has spent very little time below this line in its history. Every touch of the 200W MA in bear markets has been a generational buying opportunity.", source: "BitcoinMagazinePro, TradingView" },
     { id: "reserveRisk", name: "Reserve Risk", weight: 2, icon: Wallet, description: "Measures the confidence of long-term holders relative to the price. High confidence + low price = low Reserve Risk = good time to buy.", bullishCondition: "Below 0.001 (green zone). HODLers are confident despite low prices.", bearishCondition: "Above 0.02 (red zone). Risk/reward unfavorable.", whyItMatters: "Captures when 'weights hands' are accumulating while price is depressed. Historically excellent at identifying asymmetric risk/reward setups.", source: "LookIntoBitcoin, Glassnode" },
     { id: "puellMultiple", name: "Puell Multiple", weight: 2, icon: Zap, description: "Compares miner revenue today vs the 365-day average. Shows when miners are under stress (capitulating) or thriving.", bullishCondition: "Below 0.5 (green zone). Miners struggling — historically marks bottoms.", bearishCondition: "Above 4 (red zone). Miners highly profitable — often near tops.", whyItMatters: "Miner economics drive significant sell pressure. When the Puell Multiple is low, the worst of miner selling is typically over.", source: "LookIntoBitcoin, Glassnode" },
-    { id: "ahr999", name: "Ahr999 Index", weight: 1, icon: BarChart3, description: "Combines short-term cost basis with a geometric growth model to identify accumulation vs profit-taking zones.", bullishCondition: "Below 0.45 (dollar-cost-average zone). Below 1.2 is accumulation territory.", bearishCondition: "Above 1.2 (take profit zone).", whyItMatters: "Designed specifically to help long-term investors identify when to accumulate vs when to take profits based on valuation.", source: "LookIntoBitcoin" }]
+    { id: "ahr999", name: "Ahr999 Index", weight: 1, icon: BarChart3, description: "Combines short-term cost basis with a geometric growth model to identify accumulation vs profit-taking zones.", bullishCondition: "Below 0.45 (dollar-cost-average zone). Below 1.2 is accumulation territory.", bearishCondition: "Above 1.2 (take profit zone).", whyItMatters: "Designed specifically to help long-term investors identify when to accumulate vs when to take profits based on valuation.", source: "LookIntoBitcoin" },
+    { id: "halvingCycle", name: "Halving Cycle Position", weight: 2, icon: Calendar, description: "Where are we relative to the ~4-year halving cycle? Historically, best returns come 12-18 months post-halving.", bullishCondition: "Within 6-18 months post-halving. Supply shock taking effect.", bearishCondition: "Late cycle (24+ months post-halving) or pre-halving bear.", whyItMatters: "Every halving cuts new BTC supply in half. The 12-18 month window after halving has historically produced the strongest returns.", source: "Calculate from block height (April 2024 was last halving)" }]
 
   },
   phase3: {
@@ -75,8 +76,7 @@ const INDICATORS: Record<string, Phase> = {
     subtitle: "Is price structure confirming the turn?",
     indicators: [
     { id: "weeklyHigherLow", name: "Weekly Higher Low", weight: 1, icon: TrendingUp, description: "Basic price structure — are weekly candles making higher lows? This confirms the trend has actually changed.", bullishCondition: "3+ consecutive weekly higher lows established.", bearishCondition: "Still making lower lows. No trend reversal confirmed.", whyItMatters: "On-chain data can be early. This confirms the market is actually ACTING like a new bull regime before you add more size.", source: "Any charting platform (TradingView)" },
-    { id: "stablecoinSupply", name: "Stablecoin Supply 90d Δ", weight: 1, icon: DollarSign, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" },
-    { id: "halvingCycle", name: "Halving Cycle Position", weight: 2, icon: Calendar, description: "Where are we relative to the ~4-year halving cycle? Historically, best returns come 12-18 months post-halving.", bullishCondition: "Within 6-18 months post-halving. Supply shock taking effect.", bearishCondition: "Late cycle (24+ months post-halving) or pre-halving bear.", whyItMatters: "Every halving cuts new BTC supply in half. The 12-18 month window after halving has historically produced the strongest returns.", source: "Calculate from block height (April 2024 was last halving)" }]
+    { id: "stablecoinSupply", name: "Stablecoin Supply 90d Δ", weight: 1, icon: DollarSign, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" }]
 
   }
 };
@@ -89,12 +89,11 @@ const STATUS_CONFIG: Record<Status, {color: string;textColor: string;label: stri
   bearish: { color: 'bg-red-500', textColor: 'text-red-400', label: 'Bearish', value: -1 }
 };
 
-const getRegimeSignal = (score: number, maxScore: number) => {
-  const percentage = score / maxScore * 100;
-  if (percentage >= 65) return { label: 'HIGH CONVICTION LONG', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Multiple indicators aligned. Strong risk/reward for deployment.' };
-  if (percentage >= 40) return { label: 'ACCUMULATION ZONE', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Early signals present. Consider scaling into position.' };
-  if (percentage >= 10) return { label: 'NEUTRAL / WAIT', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'Mixed signals. Wait for more confirmation.' };
-  if (percentage >= -20) return { label: 'CAUTION', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Bearish signals emerging. Reduce risk or stay sidelined.' };
+const getRegimeSignal = (percentage: number) => {
+  if (percentage >= 80) return { label: 'HIGH CONVICTION LONG', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Multiple indicators aligned. Strong risk/reward for deployment.' };
+  if (percentage >= 65) return { label: 'ACCUMULATION ZONE', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Early signals present. Consider scaling into position.' };
+  if (percentage >= 40) return { label: 'NEUTRAL / WAIT', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'Mixed signals. Wait for more confirmation.' };
+  if (percentage >= 20) return { label: 'CAUTION', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Bearish signals emerging. Reduce risk or stay sidelined.' };
   return { label: 'RISK OFF', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Bear market conditions. Preserve capital.' };
 };
 
@@ -292,8 +291,9 @@ export default function BTCRegimeTracker() {
     return acc + STATUS_CONFIG[status].value * ind.weight;
   }, 0);
   const maxScore = allIndicators.reduce((acc, ind) => acc + ind.weight, 0);
-  const minScore = -maxScore;
-  const regime = getRegimeSignal(totalScore, maxScore);
+  // Convert to 0-100% scale: -maxScore = 0%, 0 = 50%, +maxScore = 100%
+  const percentage = Math.round(((totalScore + maxScore) / (maxScore * 2)) * 100);
+  const regime = getRegimeSignal(percentage);
 
   const resetAll = () => {
     setIndicators({});
@@ -327,10 +327,10 @@ export default function BTCRegimeTracker() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
           <div className="relative text-center">
             <div className="text-5xl font-black mb-1 tracking-tighter">
-              {totalScore > 0 ? '+' : ''}{totalScore}
+              {percentage}%
             </div>
             <div className="text-xs text-white/70 mb-3 font-mono">
-              of {maxScore} possible ({minScore} to +{maxScore})
+              Conviction Score (0% = Risk Off, 100% = Max Bullish)
             </div>
             <div className="inline-block px-4 py-1.5 bg-black/30 rounded-full">
               <span className="font-bold tracking-wide text-xl">{regime.label}</span>
@@ -397,20 +397,20 @@ export default function BTCRegimeTracker() {
             <li><span className="text-slate-300">Phase 3 (Exhaustion):</span> Your PRIMARY entry trigger — especially Hash Ribbons</li>
             <li><span className="text-slate-300">Phase 4 (Confirm):</span> Price structure confirms the turn — add remaining size</li>
           </ol>
+          <div className="mt-3 p-2 bg-slate-700/30 rounded-lg border border-slate-600/30">
+            <p className="text-xs text-slate-400 mb-1 font-semibold">Score Thresholds:</p>
+            <div className="text-[10px] text-slate-400 leading-relaxed">
+              <span className="text-emerald-500">■</span> 80-100% = High Conviction Long &nbsp;
+              <span className="text-green-500">■</span> 65-79% = Accumulation Zone<br/>
+              <span className="text-yellow-500">■</span> 40-64% = Neutral / Wait &nbsp;
+              <span className="text-orange-500">■</span> 20-39% = Caution &nbsp;
+              <span className="text-red-500">■</span> 0-19% = Risk Off
+            </div>
+          </div>
           <div className="mt-3 p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
             <p className="text-xs text-emerald-300">
               <strong>High conviction entry:</strong> Phase 1 supportive + Phase 2 in value zone + Hash Ribbons buy signal + SOPR recovering above 1
             </p>
-          </div>
-        </div>
-
-        {/* Weight Explanation */}
-        <div className="mt-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-sm mb-2">Weight System (×1, ×2, ×3)</h4>
-          <div className="text-xs text-slate-400 space-y-1">
-            <p><span className="text-slate-300">×3 (High conviction):</span> MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price — near-perfect track record</p>
-            <p><span className="text-slate-300">×2 (Strong signal):</span> Puell, Reserve Risk, LTH Supply, SOPR, Halving — excellent but occasionally early</p>
-            <p><span className="text-slate-300">×1 (Confirming):</span> Macro indicators, stablecoins, price structure — useful confirmation but less definitive</p>
           </div>
         </div>
       </div>
