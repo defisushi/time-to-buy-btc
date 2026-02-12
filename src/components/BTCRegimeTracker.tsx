@@ -478,7 +478,7 @@ export default function BTCRegimeTracker() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="font-bold text-slate-100 tracking-tight my-[20px] text-3xl">BTC Regime Tracker</h1>
-              <p className="text-[11px] text-slate-500">15-Indicator Framework</p>
+              <p className="text-slate-500 text-lg">​Is it Bull or Bear season?         </p>
             </div>
             <div className="flex items-center gap-2">
               <button
