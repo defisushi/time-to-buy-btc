@@ -477,7 +477,7 @@ export default function BTCRegimeTracker() {
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="font-bold text-slate-100 tracking-tight text-lg">BTC Regime Tracker</h1>
+              <h1 className="font-bold text-slate-100 tracking-tight text-2xl">BTC Regime Tracker</h1>
               <p className="text-[11px] text-slate-500">15-Indicator Framework</p>
             </div>
             <div className="flex items-center gap-2">
