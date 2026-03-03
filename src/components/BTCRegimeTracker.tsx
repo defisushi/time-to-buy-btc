@@ -302,7 +302,7 @@ export default function BTCRegimeTracker() {
         <div className="px-4 py-3">
           <div>
             <h1 className="font-bold text-slate-100 tracking-tight my-[20px] text-3xl">BTC Regime Tracker</h1>
-            <p className="text-slate-500 text-lg">​Is it Bull or Bear season?         </p>
+            <p className="text-slate-500 text-lg">How Hard Do We Go?</p>
           </div>
         </div>
       </div>
