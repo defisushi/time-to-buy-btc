@@ -606,17 +606,6 @@ export default function BTCRegimeTracker() {
           </div>
 
 
-          {/* Phase 1 Quick Reference */}
-          <div className="mt-3 p-2.5 bg-blue-500/10 rounded-lg border border-blue-500/20">
-            <p className="text-sm text-blue-300 mb-2 font-semibold">Phase 1 Quick Reference (Quantitative):</p>
-            <div className="text-sm text-slate-400 leading-loose">
-              <span className="text-slate-300 font-medium">NFCI (Financial Conditions):</span><br />
-              &nbsp;&nbsp;🟢 Bullish: &lt; 0 &nbsp; | &nbsp; 🟡 Neutral: 0 to +0.5 &nbsp; | &nbsp; 🔴 Bearish: &gt; +0.5<br />
-              <span className="text-slate-300 font-medium">Global M2 (12-week change):</span><br />
-              &nbsp;&nbsp;🟢 Bullish: &gt; +1% &nbsp; | &nbsp; 🟡 Neutral: -1% to +1% &nbsp; | &nbsp; 🔴 Bearish: &lt; -1%<br />
-              <span className="text-slate-500 italic">Note: M2 effect lags BTC by 60-90 days</span>
-            </div>
-          </div>
 
           {/* High conviction entry */}
           <div className="mt-3 p-2.5 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
