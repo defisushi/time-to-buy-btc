@@ -105,10 +105,10 @@ const STATUS_CONFIG: Record<Status, {color: string;textColor: string;bgColor: st
 };
 
 const getRegimeSignal = (percentage: number) => {
-  if (percentage >= 80) return { label: 'MAX LONG, LFG!', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Deep value. Strong risk/reward for deployment.' };
-  if (percentage >= 65) return { label: 'ACCUMULATION ZONE', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Attractive. Scale into position.' };
-  if (percentage >= 40) return { label: 'PATIENCE...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So so. Wait for more confirmation.' };
-  if (percentage >= 20) return { label: 'DISTRIBUTION ZONE', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Risky. Scale out of position.' };
+  if (percentage >= 81) return { label: 'MAX LONG, LFG!', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Deep value. Strong risk/reward for deployment.' };
+  if (percentage >= 61) return { label: 'ACCUMULATION ZONE', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Attractive. Scale into position.' };
+  if (percentage >= 41) return { label: 'PATIENCE...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So so. Wait for more confirmation.' };
+  if (percentage >= 21) return { label: 'DISTRIBUTION ZONE', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Risky. Scale out of position.' };
   return { label: 'GTFO BABY!', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Poor value. Want to end this cycle empty handed?' };
 };
 
@@ -346,31 +346,31 @@ export default function BTCRegimeTracker() {
               <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
                 <tr>
                   <td className="w-4 pr-2 text-emerald-500">■</td>
-                  <td className="text-slate-300 font-medium whitespace-nowrap">80-100%</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">81-100%</td>
                   <td className="px-1">:</td>
                   <td>Max Long, LFG!</td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-[#69c38a]">■</td>
-                  <td className="text-slate-300 font-medium whitespace-nowrap">65-79%</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">61-80%</td>
                   <td className="px-1">:</td>
                   <td>Accumulation Zone</td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-yellow-500">■</td>
-                  <td className="text-slate-300 font-medium whitespace-nowrap">40-64%</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">41-60%</td>
                   <td className="px-1">:</td>
                   <td>Patience...</td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-orange-500">■</td>
-                  <td className="text-slate-300 font-medium whitespace-nowrap">20-39%</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">21-40%</td>
                   <td className="px-1">:</td>
                   <td>Distribution Zone</td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-red-500">■</td>
-                  <td className="text-slate-300 font-medium whitespace-nowrap">0-19%</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">0-20%</td>
                   <td className="px-1">:</td>
                   <td>GTFO baby!</td>
                 </tr>
