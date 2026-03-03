@@ -130,7 +130,7 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
 
   return (
     <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden mb-2">
-      <button onClick={onToggle} className="w-full p-3.5 flex items-center justify-between text-left">
+      <button onClick={onToggle} className="w-full p-4 flex items-center justify-between text-left min-h-[52px] active:bg-slate-700/30 transition-colors">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="w-9 h-9 rounded-lg bg-slate-700/50 flex items-center justify-center flex-shrink-0 text-base">
             {statusEmoji}
@@ -159,7 +159,7 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
             <button
               key={key}
               onClick={(e) => {e.stopPropagation();onStatusChange(key);}}
-              className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex-1 py-3 px-3 rounded-lg text-xs font-semibold transition-all min-h-[44px] active:scale-95 ${
               status === key ? `${config.color} text-white` : 'bg-slate-700/50 text-slate-400 hover:bg-slate-700'}`
               }>
 
@@ -268,7 +268,7 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndic
     <div className="mb-4">
       <button
         onClick={onToggle}
-        className="w-full p-4 bg-slate-800/80 rounded-xl border border-slate-700/50 flex items-center justify-between mb-2">
+        className="w-full p-4 bg-slate-800/80 rounded-xl border border-slate-700/50 flex items-center justify-between mb-2 min-h-[56px] active:bg-slate-700/60 transition-colors">
 
         <div className="flex items-center gap-3">
           <PhaseIcon className={`w-5 h-5 ${phaseStatus.color}`} />
@@ -420,8 +420,8 @@ export default function BTCRegimeTracker() {
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       {/* PIN Modal */}
       {showPinModal &&
-      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-          <div className="bg-slate-800 rounded-2xl p-6 w-[300px] border border-slate-700">
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-[320px] border border-slate-700 max-h-[90vh] overflow-y-auto">
             <h3 className="text-base font-semibold text-slate-100 mb-4">
               {isSettingPin ? '🔐 Set Admin PIN' : '🔓 Enter PIN'}
             </h3>
@@ -457,13 +457,13 @@ export default function BTCRegimeTracker() {
             <div className="flex gap-2">
               <button
               onClick={() => setShowPinModal(false)}
-              className="flex-1 py-2.5 rounded-lg bg-slate-700 text-slate-400 text-sm hover:bg-slate-600 transition-colors">
+              className="flex-1 py-3 rounded-lg bg-slate-700 text-slate-400 text-sm hover:bg-slate-600 transition-colors min-h-[44px] active:scale-95">
 
                 Cancel
               </button>
               <button
               onClick={handlePinSubmit}
-              className="flex-1 py-2.5 rounded-lg bg-blue-500 text-white text-sm font-semibold hover:bg-blue-600 transition-colors">
+              className="flex-1 py-3 rounded-lg bg-blue-500 text-white text-sm font-semibold hover:bg-blue-600 transition-colors min-h-[44px] active:scale-95">
 
                 {isSettingPin ? 'Set PIN' : 'Unlock'}
               </button>
@@ -483,7 +483,7 @@ export default function BTCRegimeTracker() {
             <div className="flex items-center gap-2">
               <button
                 onClick={isAdmin ? () => setIsAdmin(false) : openPinModal}
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] rounded-lg border transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-2 text-xs rounded-lg border transition-colors min-h-[44px] active:scale-95 ${
                 isAdmin ?
                 'bg-emerald-500/20 border-emerald-500/30 text-emerald-300' :
                 'bg-slate-700/50 border-slate-600/30 text-slate-400'}`
@@ -495,7 +495,7 @@ export default function BTCRegimeTracker() {
               {isAdmin &&
               <button
                 onClick={resetAll}
-                className="px-3 py-1.5 text-xs bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 transition-colors">
+                className="px-3 py-2 text-xs bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 transition-colors min-h-[44px] active:scale-95">
 
                   Reset
                 </button>
