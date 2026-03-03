@@ -262,7 +262,6 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndic
         className="w-full p-4 bg-slate-800/80 rounded-xl border border-slate-700/50 flex items-center justify-between mb-2 min-h-[56px] active:bg-slate-700/60 transition-colors">
 
         <div className="flex items-center gap-3">
-          <PhaseIcon className={`w-5 h-5 ${phaseStatus.color}`} />
           <div className="text-left">
             <h3 className="font-bold text-slate-100 text-sm">{phase.title}</h3>
               <p className="text-slate-500 text-xs mt-2">{phase.subtitle}</p>
