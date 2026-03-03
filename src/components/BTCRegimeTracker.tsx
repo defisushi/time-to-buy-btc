@@ -396,7 +396,7 @@ export default function BTCRegimeTracker() {
 
         {/* How to Use Guide */}
         <div className="mt-6 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-base mb-2.5">
+          <h4 className="font-semibold text-slate-200 text-base mb-4">
             How to Use This
           </h4>
           <div className="text-sm text-slate-400 space-y-3 leading-relaxed">
@@ -409,7 +409,7 @@ export default function BTCRegimeTracker() {
 
         {/* Weight System */}
         <div className="mt-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-base mb-2">Indicator Weights System</h4>
+          <h4 className="font-semibold text-slate-200 text-base mb-4">Indicator Weights System</h4>
           <div className="text-sm text-slate-400 leading-relaxed space-y-1.5">
             <p className="mb-1.5">Some indicators are more important than others. The higher the weight the more useful.</p>
             <p><span className="text-slate-300 font-medium">×3: Near perfect track record</span><br />MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
