@@ -137,10 +137,10 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-slate-100 text-[13px] truncate">{indicator.name}</span>
-              <span className="text-[10px] text-slate-500 flex-shrink-0">×{indicator.weight}</span>
+              <span className="font-semibold text-slate-100 text-base truncate">{indicator.name}</span>
+              <span className="text-xs text-slate-500 flex-shrink-0">×{indicator.weight}</span>
             </div>
-            <span className={`text-xs ${statusConfig.textColor}`}>{statusConfig.label}</span>
+            <span className={`text-sm ${statusConfig.textColor}`}>{statusConfig.label}</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
       </button>
 
       {expanded &&
-      <div className="px-3.5 pb-3.5 border-t border-slate-700/50">
+      <div className="px-4 pb-4 border-t border-slate-700/50">
           <div className="pt-3.5 space-y-3">
             {/* Status buttons - admin only, read-only badge for viewers */}
             {isAdmin ?
@@ -159,7 +159,7 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
             <button
               key={key}
               onClick={(e) => {e.stopPropagation();onStatusChange(key);}}
-              className={`flex-1 py-3 px-3 rounded-lg text-xs font-semibold transition-all min-h-[44px] active:scale-95 ${
+              className={`flex-1 py-3 px-3 rounded-lg text-sm font-semibold transition-all min-h-[44px] active:scale-95 ${
               status === key ? `${config.color} text-white` : 'bg-slate-700/50 text-slate-400 hover:bg-slate-700'}`
               }>
 
@@ -170,7 +170,7 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
 
           <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg" style={{ background: `${statusConfig.bgColor}15` }}>
                 <div className={`w-2 h-2 rounded-full ${statusConfig.color}`} />
-                <span className={`text-xs font-semibold ${statusConfig.textColor}`}>Currently: {statusConfig.label}</span>
+                <span className={`text-sm font-semibold ${statusConfig.textColor}`}>Currently: {statusConfig.label}</span>
               </div>
           }
 
@@ -181,52 +181,52 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-400 text-[11px] no-underline hover:bg-blue-500/20 transition-colors">
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-400 text-sm no-underline hover:bg-blue-500/20 transition-colors">
 
                 <ExternalLink className="w-3 h-3" />
                 View Chart
               </a>
           }
 
-            <p className="text-xs text-slate-400 leading-relaxed">{indicator.description}</p>
+            <p className="text-sm text-slate-400 leading-relaxed">{indicator.description}</p>
 
             <div className="space-y-2">
-              <div className="flex items-start gap-2 p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <span className="text-[11px] font-semibold text-emerald-400">Bullish when:</span>
-                  <p className="text-[11px] text-slate-300 mt-0.5">{indicator.bullishCondition}</p>
+                  <span className="text-sm font-semibold text-emerald-400">Bullish when:</span>
+                  <p className="text-sm text-slate-300 mt-0.5">{indicator.bullishCondition}</p>
                 </div>
               </div>
 
               {indicator.neutralCondition &&
-            <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                  <Clock className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
+            <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                  <Clock className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <span className="text-[11px] font-semibold text-amber-400">Neutral when:</span>
-                    <p className="text-[11px] text-slate-300 mt-0.5">{indicator.neutralCondition}</p>
+                    <span className="text-sm font-semibold text-amber-400">Neutral when:</span>
+                    <p className="text-sm text-slate-300 mt-0.5">{indicator.neutralCondition}</p>
                   </div>
                 </div>
             }
 
-              <div className="flex items-start gap-2 p-2.5 rounded-lg bg-red-500/10 border border-red-500/20">
-                <AlertCircle className="w-3.5 h-3.5 text-red-400 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                <AlertCircle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <span className="text-[11px] font-semibold text-red-400">Bearish when:</span>
-                  <p className="text-[11px] text-slate-300 mt-0.5">{indicator.bearishCondition}</p>
+                  <span className="text-sm font-semibold text-red-400">Bearish when:</span>
+                  <p className="text-sm text-slate-300 mt-0.5">{indicator.bearishCondition}</p>
                 </div>
               </div>
             </div>
 
             <div className="p-3 rounded-lg bg-slate-700/30 border border-slate-600/30">
               <div className="flex items-center gap-2 mb-1">
-                <Info className="w-3.5 h-3.5 text-blue-400" />
-                <span className="text-[11px] font-semibold text-blue-400">Why This Matters</span>
+                <Info className="w-4 h-4 text-blue-400" />
+                <span className="text-sm font-semibold text-blue-400">Why This Matters</span>
               </div>
-              <p className="text-[11px] text-slate-300 leading-relaxed">{indicator.whyItMatters}</p>
+              <p className="text-sm text-slate-300 leading-relaxed">{indicator.whyItMatters}</p>
             </div>
 
-            <div className="flex items-center gap-2 text-[11px] text-slate-500">
+            <div className="flex items-center gap-2 text-sm text-slate-500">
               <span>📊</span>
               <span>Source: {indicator.source}</span>
             </div>
@@ -274,7 +274,7 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndic
           <PhaseIcon className={`w-5 h-5 ${phaseStatus.color}`} />
           <div className="text-left">
             <h3 className="font-bold text-slate-100 text-sm">{phase.title}</h3>
-            <p className="text-slate-500 text-[11px]">{phase.subtitle}</p>
+            <p className="text-slate-500 text-xs">{phase.subtitle}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -513,19 +513,19 @@ export default function BTCRegimeTracker() {
             <div className="text-5xl font-black mb-1 tracking-tighter" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
               {percentage}%
             </div>
-            <div className="text-[11px] text-white/70 mb-3 font-mono">
+             <div className="text-xs text-white/70 mb-3 font-mono">
               CONVICTION 
             </div>
             <div className="inline-block px-4 py-1.5 bg-black/30 rounded-full">
               <span className="font-bold tracking-wide text-sm">{regime.label}</span>
             </div>
-            <p className="text-white/80 mt-3 max-w-xs mx-auto text-xs">{regime.description}</p>
+            <p className="text-white/80 mt-3 max-w-xs mx-auto text-sm">{regime.description}</p>
           </div>
         </div>
 
         {lastUpdated &&
         <div className="text-center mt-3">
-            <span className="text-[11px] text-slate-500">
+            <span className="text-xs text-slate-500">
               Last updated: {new Date(lastUpdated).toLocaleDateString('en-US', {
               weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
             })}
@@ -537,7 +537,7 @@ export default function BTCRegimeTracker() {
 
       {/* Legend */}
       <div className="px-4 mb-4">
-        <div className="flex items-center justify-center gap-4 text-[11px]">
+        <div className="flex items-center justify-center gap-4 text-xs">
           {Object.entries(STATUS_CONFIG).map(([key, config]) =>
           <div key={key} className="flex items-center gap-1.5">
               <div className={`w-2.5 h-2.5 rounded-full ${config.color}`} />
@@ -566,11 +566,11 @@ export default function BTCRegimeTracker() {
 
         {/* How to Use Guide */}
         <div className="mt-6 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-[13px] mb-2.5 flex items-center gap-2">
+          <h4 className="font-semibold text-slate-200 text-base mb-2.5 flex items-center gap-2">
             <Info className="w-4 h-4 text-blue-400" />
             How to Use This
           </h4>
-          <ol className="text-[11px] text-slate-400 space-y-1.5 list-decimal list-inside leading-relaxed">
+          <ol className="text-sm text-slate-400 space-y-2 list-decimal list-inside leading-relaxed">
             <li><span className="text-slate-300 font-medium">Every Monday:</span> Check each indicator source and update status</li>
             <li><span className="text-slate-300 font-medium">Phase 1 (Macro):</span> Must be neutral/bullish for full position — this is "permission to play"</li>
             <li><span className="text-slate-300 font-medium">Phase 2 (Value):</span> Tells you if BTC is cheap, but NOT when to buy</li>
@@ -580,15 +580,15 @@ export default function BTCRegimeTracker() {
 
           {/* Phase 1 Exception */}
           <div className="mt-3 p-2.5 bg-amber-500/10 rounded-lg border border-amber-500/20">
-            <p className="text-[11px] text-amber-300 leading-relaxed">
+            <p className="text-sm text-amber-300 leading-relaxed">
               <strong>⚠️ Phase 1 Exception (March 2020 scenario):</strong> If Phases 2-3 hit EXTREME readings (80%+) while Phase 1 is bearish, consider a starter position (25-33%). Historically, extreme on-chain capitulation forces policy responses. But wait for macro confirmation before full size.
             </p>
           </div>
 
           {/* Score Thresholds */}
           <div className="mt-3 p-2.5 bg-slate-700/30 rounded-lg border border-slate-600/30">
-            <p className="text-[11px] text-slate-400 mb-1.5 font-semibold">Score Thresholds:</p>
-            <div className="text-[10px] text-slate-400 leading-loose">
+            <p className="text-sm text-slate-400 mb-1.5 font-semibold">Score Thresholds:</p>
+            <div className="text-sm text-slate-400 leading-loose">
               <span className="text-emerald-500">■</span> 80-100% = Max Long, LFG!<br />
               <span className="text-[#69c38a]">■</span> 65-79% = Accumulation Zone<br />
               <span className="text-yellow-500">■</span> 40-64% = Patience...<br />
@@ -599,8 +599,8 @@ export default function BTCRegimeTracker() {
 
           {/* Phase 1 Quick Reference */}
           <div className="mt-3 p-2.5 bg-blue-500/10 rounded-lg border border-blue-500/20">
-            <p className="text-[11px] text-blue-300 mb-2 font-semibold">📐 Phase 1 Quick Reference (Quantitative):</p>
-            <div className="text-[10px] text-slate-400 leading-loose">
+            <p className="text-sm text-blue-300 mb-2 font-semibold">📐 Phase 1 Quick Reference (Quantitative):</p>
+            <div className="text-sm text-slate-400 leading-loose">
               <span className="text-slate-300 font-medium">NFCI (Financial Conditions):</span><br />
               &nbsp;&nbsp;🟢 Bullish: &lt; 0 &nbsp; | &nbsp; 🟡 Neutral: 0 to +0.5 &nbsp; | &nbsp; 🔴 Bearish: &gt; +0.5<br />
               <span className="text-slate-300 font-medium">Global M2 (12-week change):</span><br />
@@ -611,7 +611,7 @@ export default function BTCRegimeTracker() {
 
           {/* High conviction entry */}
           <div className="mt-3 p-2.5 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
-            <p className="text-[11px] text-emerald-300">
+            <p className="text-sm text-emerald-300">
               <strong>High conviction entry:</strong> Phase 1 supportive + Phase 2 in value zone + Hash Ribbons buy signal + SOPR recovering above 1
             </p>
           </div>
@@ -619,8 +619,8 @@ export default function BTCRegimeTracker() {
 
         {/* Weight System */}
         <div className="mt-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-[13px] mb-2">Weight System (×1, ×2, ×3)</h4>
-          <div className="text-[11px] text-slate-400 leading-relaxed space-y-1">
+          <h4 className="font-semibold text-slate-200 text-base mb-2">Weight System (×1, ×2, ×3)</h4>
+          <div className="text-sm text-slate-400 leading-relaxed space-y-1.5">
             <p><span className="text-slate-300">×3 (High conviction):</span> MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price — near-perfect track record</p>
             <p><span className="text-slate-300">×2 (Strong signal):</span> Puell, Reserve Risk, LTH Supply, SOPR, Halving — excellent but occasionally early</p>
             <p><span className="text-slate-300">×1 (Confirming):</span> Macro indicators, stablecoins, price structure — useful confirmation but less definitive</p>
