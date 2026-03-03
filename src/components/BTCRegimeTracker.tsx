@@ -109,11 +109,11 @@ const STATUS_CONFIG: Record<Status, {color: string;textColor: string;bgColor: st
 };
 
 const getRegimeSignal = (percentage: number) => {
-  if (percentage >= 80) return { label: 'HIGH CONVICTION LONG', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Multiple indicators aligned. Strong risk/reward for deployment.' };
+  if (percentage >= 80) return { label: 'MAX LONG, LFG!', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Multiple indicators aligned. Strong risk/reward for deployment.' };
   if (percentage >= 65) return { label: 'ACCUMULATION ZONE', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Early signals present. Consider scaling into position.' };
-  if (percentage >= 40) return { label: 'NEUTRAL / WAIT', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'Mixed signals. Wait for more confirmation.' };
-  if (percentage >= 20) return { label: 'CAUTION', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Bearish signals emerging. Reduce risk or stay sidelined.' };
-  return { label: 'RISK OFF', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Bear market conditions. Preserve capital.' };
+  if (percentage >= 40) return { label: 'PATIENCE...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'Mixed signals. Wait for more confirmation.' };
+  if (percentage >= 20) return { label: 'DISTRIBUTION ZONE', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Bearish signals emerging. Reduce risk or stay sidelined.' };
+  return { label: 'GTFO BABY!', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Bear market conditions. Preserve capital.' };
 };
 
 const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, isAdmin
