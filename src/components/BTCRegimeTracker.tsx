@@ -610,11 +610,12 @@ export default function BTCRegimeTracker() {
 
         {/* Weight System */}
         <div className="mt-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-base mb-2">Weight System (×1, ×2, ×3)</h4>
+          <h4 className="font-semibold text-slate-200 text-base mb-2">Indicator Weights System</h4>
           <div className="text-sm text-slate-400 leading-relaxed space-y-1.5">
-            <p><span className="text-slate-300">×3 (High conviction):</span> MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price — near-perfect track record</p>
-            <p><span className="text-slate-300">×2 (Strong signal):</span> Puell, Reserve Risk, LTH Supply, SOPR, Halving — excellent but occasionally early</p>
-            <p><span className="text-slate-300">×1 (Confirming):</span> Macro indicators, stablecoins, price structure — useful confirmation but less definitive</p>
+            <p>Some indicators are more important than others. The higher the weight the more useful.</p>
+            <p><span className="text-slate-300 font-medium">×3: Near perfect track record</span><br/>MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
+            <p><span className="text-slate-300 font-medium">×2: Excellent but sometimes early</span><br/>Puell, Reserve Risk, LTH Supply, SOPR, Halving</p>
+            <p><span className="text-slate-300 font-medium">×1: Useful confirmation</span><br/>Macro indicators, stablecoins, price structure</p>
           </div>
         </div>
       </div>
