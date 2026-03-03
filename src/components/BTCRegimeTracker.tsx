@@ -552,11 +552,11 @@ export default function BTCRegimeTracker() {
         <div className="p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
           <h4 className="font-semibold text-slate-200 text-base mb-2.5">Score Thresholds</h4>
           <div className="text-sm text-slate-400 space-y-1.5 leading-relaxed">
-            <p><span className="text-emerald-500">■</span> <span className="text-slate-300 font-medium">80-100%:</span> Max Long, LFG!</p>
-            <p><span className="text-[#69c38a]">■</span> <span className="text-slate-300 font-medium">65-79%:</span> Accumulation Zone</p>
-            <p><span className="text-yellow-500">■</span> <span className="text-slate-300 font-medium">40-64%:</span> Patience...</p>
-            <p><span className="text-orange-500">■</span> <span className="text-slate-300 font-medium">20-39%:</span> Distribution Zone</p>
-            <p><span className="text-red-500">■</span> <span className="text-slate-300 font-medium">0-19%:</span> GTFO baby!</p>
+            <div className="flex items-center"><span className="text-emerald-500 mr-2">■</span><span className="text-slate-300 font-medium w-[70px] text-right shrink-0">80-100%</span><span className="mx-1">:</span><span>Max Long, LFG!</span></div>
+            <div className="flex items-center"><span className="text-[#69c38a] mr-2">■</span><span className="text-slate-300 font-medium w-[70px] text-right shrink-0">65-79%</span><span className="mx-1">:</span><span>Accumulation Zone</span></div>
+            <div className="flex items-center"><span className="text-yellow-500 mr-2">■</span><span className="text-slate-300 font-medium w-[70px] text-right shrink-0">40-64%</span><span className="mx-1">:</span><span>Patience...</span></div>
+            <div className="flex items-center"><span className="text-orange-500 mr-2">■</span><span className="text-slate-300 font-medium w-[70px] text-right shrink-0">20-39%</span><span className="mx-1">:</span><span>Distribution Zone</span></div>
+            <div className="flex items-center"><span className="text-red-500 mr-2">■</span><span className="text-slate-300 font-medium w-[70px] text-right shrink-0">0-19%</span><span className="mx-1">:</span><span>GTFO baby!</span></div>
           </div>
         </div>
       </div>
