@@ -549,14 +549,14 @@ export default function BTCRegimeTracker() {
 
       {/* Score Thresholds */}
       <div className="px-4 mb-4">
-        <div className="p-3 bg-slate-800/50 rounded-xl border border-slate-700/30">
-          <p className="text-sm text-slate-400 mb-1.5 font-semibold">Score Thresholds:</p>
-          <div className="text-sm text-slate-400 leading-loose">
-            <span className="text-emerald-500">■</span> 80-100% = Max Long, LFG!<br />
-            <span className="text-[#69c38a]">■</span> 65-79% = Accumulation Zone<br />
-            <span className="text-yellow-500">■</span> 40-64% = Patience...<br />
-            <span className="text-orange-500">■</span> 20-39% = Distribution Zone<br />
-            <span className="text-red-500">■</span> 0-19% = GTFO baby!
+        <div className="p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
+          <h4 className="font-semibold text-slate-200 text-base mb-2.5">Score Thresholds</h4>
+          <div className="text-sm text-slate-400 space-y-1.5 leading-relaxed">
+            <p><span className="text-emerald-500">■</span> <span className="text-slate-300 font-medium">80-100%:</span> Max Long, LFG!</p>
+            <p><span className="text-[#69c38a]">■</span> <span className="text-slate-300 font-medium">65-79%:</span> Accumulation Zone</p>
+            <p><span className="text-yellow-500">■</span> <span className="text-slate-300 font-medium">40-64%:</span> Patience...</p>
+            <p><span className="text-orange-500">■</span> <span className="text-slate-300 font-medium">20-39%:</span> Distribution Zone</p>
+            <p><span className="text-red-500">■</span> <span className="text-slate-300 font-medium">0-19%:</span> GTFO baby!</p>
           </div>
         </div>
       </div>
