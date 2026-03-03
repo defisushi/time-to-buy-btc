@@ -584,7 +584,7 @@ export default function BTCRegimeTracker() {
             How to Use This
           </h4>
           <ol className="text-sm text-slate-400 space-y-2 list-decimal list-inside leading-relaxed">
-            <li><span className="text-slate-300 font-medium">Every Monday:</span> Check each indicator source and update status</li>
+            
             <li><span className="text-slate-300 font-medium">Phase 1 (Macro):</span> Must be neutral/bullish for full position — this is "permission to play"</li>
             <li><span className="text-slate-300 font-medium">Phase 2 (Value):</span> Tells you if BTC is cheap, but NOT when to buy</li>
             <li><span className="text-slate-300 font-medium">Phase 3 (Exhaustion):</span> Your PRIMARY entry trigger — especially Hash Ribbons</li>
