@@ -120,15 +120,12 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle
 }: {indicator: Indicator;status: Status;expanded: boolean;onToggle: () => void;}) => {
   const statusConfig = STATUS_CONFIG[status];
   const chartUrl = CHART_URLS[indicator.id];
-  const statusEmoji = status === 'bullish' ? '📈' : status === 'bearish' ? '📉' : '➖';
+  
 
   return (
     <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden mb-2">
       <button onClick={onToggle} className="w-full p-4 flex items-center justify-between text-left min-h-[52px] active:bg-slate-700/30 transition-colors">
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          <div className="w-9 h-9 rounded-lg bg-slate-700/50 flex items-center justify-center flex-shrink-0 text-base">
-            {statusEmoji}
-          </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-slate-100 text-base truncate">{indicator.name}</span>
