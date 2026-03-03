@@ -129,12 +129,12 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-slate-100 text-sm truncate">{indicator.name}</span>
-              <span className="text-xs text-slate-500 flex-shrink-0">×{indicator.weight}</span>
             </div>
             <span className={`text-sm ${statusConfig.textColor}`}>{statusConfig.label}</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
+          <span className="text-sm text-slate-500 flex-shrink-0">×{indicator.weight}</span>
           <div className={`w-2.5 h-2.5 rounded-full ${statusConfig.color}`} />
           {expanded ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
         </div>
