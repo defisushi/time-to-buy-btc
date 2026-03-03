@@ -318,7 +318,7 @@ export default function BTCRegimeTracker() {
             <div className="text-5xl font-black mb-1 tracking-tighter" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
               {percentage}%
             </div>
-             <div className="text-xs text-white/70 mb-3 font-mono">
+             <div className="text-lg text-white/70 mb-3 font-mono">
               CONVICTION 
             </div>
             <div className="inline-block px-4 py-1.5 bg-black/30 rounded-full">
