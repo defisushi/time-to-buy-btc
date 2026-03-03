@@ -603,6 +603,6 @@ export default function BTCRegimeTracker() {
           </div>
         </div>
 
-        <p className="mt-4 text-xs text-slate-500 italic text-center">Backtested, but not rigorously. Not financial advice.</p>
+        <p className="mt-8 text-xs text-slate-500 italic text-center">Backtested, but not rigorously. Not financial advice.</p>
       </div>
     </div>);}
