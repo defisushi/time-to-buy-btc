@@ -128,7 +128,7 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: In
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-slate-500 flex-shrink-0">\u00d7{indicator.weight}</span>
+          <span className="text-sm text-slate-500 flex-shrink-0">{"\u00d7"}{indicator.weight}</span>
           <div className={`w-2.5 h-2.5 rounded-full ${statusConfig.color}`} />
           {expanded ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
         </div>
@@ -329,31 +329,31 @@ export default function BTCRegimeTracker() {
             <table className="border-collapse table-auto w-auto">
               <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
                 <tr>
-                  <td className="w-4 pr-2 text-emerald-500">\u25a0</td>
+                  <td className="w-4 pr-2 text-emerald-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">81-100%</td>
                   <td className="px-1">:</td>
                   <td>Max Long, LFG!</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-[#69c38a]">\u25a0</td>
+                  <td className="w-4 pr-2 text-[#69c38a]">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">61-80%</td>
                   <td className="px-1">:</td>
                   <td>Accumulation Zone</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-yellow-500">\u25a0</td>
+                  <td className="w-4 pr-2 text-yellow-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">41-60%</td>
                   <td className="px-1">:</td>
                   <td>Patience...</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-orange-500">\u25a0</td>
+                  <td className="w-4 pr-2 text-orange-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">21-40%</td>
                   <td className="px-1">:</td>
                   <td>Distribution Zone</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-red-500">\u25a0</td>
+                  <td className="w-4 pr-2 text-red-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">0-20%</td>
                   <td className="px-1">:</td>
                   <td>GTFO, Baby!</td>
@@ -396,9 +396,9 @@ export default function BTCRegimeTracker() {
           <h4 className="font-semibold text-slate-200 text-base mb-4">Indicator Weights System</h4>
           <div className="text-sm text-slate-400 leading-relaxed space-y-1.5">
             <p className="mb-4">Some indicators are more important than others. The higher the weight the more useful.</p>
-            <p><span className="text-slate-300 font-medium">\u00d73: Near perfect track record</span><br />MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
-            <p><span className="text-slate-300 font-medium">\u00d72: Excellent but sometimes early</span><br />Puell, Reserve Risk, LTH Supply, SOPR, Halving</p>
-            <p><span className="text-slate-300 font-medium">\u00d71: Useful confirmation</span><br />Macro indicators, stablecoins, price structure</p>
+            <p><span className="text-slate-300 font-medium">{"\u00d7"}3: Near perfect track record</span><br />MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
+            <p><span className="text-slate-300 font-medium">{"\u00d7"}2: Excellent but sometimes early</span><br />Puell, Reserve Risk, LTH Supply, SOPR, Halving</p>
+            <p><span className="text-slate-300 font-medium">{"\u00d7"}1: Useful confirmation</span><br />Macro indicators, stablecoins, price structure</p>
           </div>
         </div>
 
