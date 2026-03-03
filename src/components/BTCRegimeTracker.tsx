@@ -109,7 +109,7 @@ const getRegimeSignal = (percentage: number) => {
   if (percentage >= 61) return { label: 'ACCUMULATION ZONE', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Attractive. Scale into position.' };
   if (percentage >= 41) return { label: 'PATIENCE...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So so. Wait for more confirmation.' };
   if (percentage >= 21) return { label: 'DISTRIBUTION ZONE', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Risky. Scale out of position.' };
-  return { label: 'GTFO BABY!', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Poor value. Want to end this cycle empty handed?' };
+  return { label: 'GTFO, Baby!', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Poor value. Want to end this cycle empty handed?' };
 };
 
 const IndicatorCard = ({ indicator, status, expanded, onToggle
@@ -372,7 +372,7 @@ export default function BTCRegimeTracker() {
                   <td className="w-4 pr-2 text-red-500">■</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">0-20%</td>
                   <td className="px-1">:</td>
-                  <td>GTFO baby!</td>
+                  <td>GTFO, Baby!</td>
                 </tr>
               </tbody>
             </table>
