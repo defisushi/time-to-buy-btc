@@ -128,7 +128,7 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-slate-100 text-base truncate">{indicator.name}</span>
+              <span className="font-semibold text-slate-100 text-sm truncate">{indicator.name}</span>
               <span className="text-xs text-slate-500 flex-shrink-0">×{indicator.weight}</span>
             </div>
             <span className={`text-sm ${statusConfig.textColor}`}>{statusConfig.label}</span>
