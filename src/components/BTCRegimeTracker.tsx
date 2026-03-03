@@ -41,7 +41,7 @@ interface Phase {
 const INDICATORS: Record<string, Phase> = {
   phase1: {
     title: "Phase 1: Macro Backdrop",
-    subtitle: "Permission to play — is the environment supportive?",
+    subtitle: "Is the environment supportive?",
     indicators: [
     {
       id: "globalM2",
@@ -69,7 +69,7 @@ const INDICATORS: Record<string, Phase> = {
   },
   phase2: {
     title: "Phase 2: Deep Value Zone",
-    subtitle: "Is BTC historically cheap? (Necessary but not sufficient)",
+    subtitle: "Is BTC historically cheap?",
     indicators: [
     { id: "mvrvZScore", name: "MVRV Z-Score", weight: 3, description: "Compares Bitcoin's market value to its realized value (aggregate cost basis), normalized by volatility. Identifies extreme over/undervaluation.", bullishCondition: "Below 0 (deep value). Ideal entry zone is below -0.5.", bearishCondition: "Above 3 (overheated). Cycle tops historically occur at 6-7+.", whyItMatters: "Near-perfect track record at identifying cycle bottoms. When MVRV Z-Score is in the green zone, buying has historically produced outsized returns.", source: "LookIntoBitcoin, Glassnode, CoinGlass" },
     { id: "realizedPrice", name: "Price vs Realized Price", weight: 3, description: "Realized Price is the average price at which all BTC last moved on-chain — the aggregate cost basis of all holders.", bullishCondition: "Price below Realized Price (~$56-58K currently). Historically rare and excellent entry.", bearishCondition: "Price far above Realized Price. High MVRV ratio.", whyItMatters: "When price drops below realized price, the average holder is underwater. This has only happened at major cycle bottoms (2015, 2018, 2022).", source: "Glassnode, LookIntoBitcoin" },
@@ -81,7 +81,7 @@ const INDICATORS: Record<string, Phase> = {
   },
   phase3: {
     title: "Phase 3: Capitulation Exhaustion",
-    subtitle: "Are sellers exhausted? (Primary entry trigger zone)",
+    subtitle: "Are sellers exhausted?",
     indicators: [
     { id: "hashRibbons", name: "Hash Ribbons", weight: 3, description: "Tracks when miners capitulate (30d MA crosses below 60d MA) and when they recover. 'Buy' signal fires when 30d crosses back above 60d.", bullishCondition: "Buy signal active — 30d MA crossed back above 60d MA after capitulation.", bearishCondition: "Deep capitulation ongoing — 30d MA falling further below 60d MA.", whyItMatters: "\"When miners give up, it's possibly the most powerful Bitcoin buy signal ever.\" Has caught every major cycle bottom. Your PRIMARY entry trigger.", source: "LookIntoBitcoin, Glassnode, Capriole" },
     { id: "sopr", name: "SOPR (7d MA)", weight: 2, description: "Spent Output Profit Ratio — measures whether coins moving on-chain are being sold at a profit (>1) or loss (<1).", bullishCondition: "Recovering above 1 after spending time below. Holders no longer selling at a loss.", bearishCondition: "Below 1 and falling. Capitulation ongoing.", whyItMatters: "When SOPR recovers above 1 after a bear market, it signals the worst of the selling is over. Confirms the turn that Hash Ribbons suggests.", source: "Glassnode, CryptoQuant" },
@@ -91,7 +91,7 @@ const INDICATORS: Record<string, Phase> = {
   },
   phase4: {
     title: "Phase 4: Confirmation",
-    subtitle: "Is price structure confirming the turn?",
+    subtitle: "Does price structure confirm the turn?",
     indicators: [
     { id: "weeklyHigherLow", name: "Weekly Higher Low", weight: 1, description: "Basic price structure — are weekly candles making higher lows? This confirms the trend has actually changed.", bullishCondition: "3+ consecutive weekly higher lows established.", bearishCondition: "Still making lower lows. No trend reversal confirmed.", whyItMatters: "On-chain data can be early. This confirms the market is actually ACTING like a new bull regime before you add more size.", source: "Any charting platform (TradingView)" },
     { id: "stablecoinSupply", name: "Stablecoin Supply 90d Δ", weight: 1, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" },
