@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Info, CheckCircle, AlertCircle, Clock, Lock, Unlock, ExternalLink } from 'lucide-react';
+import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
-// Chart source URLs for each indicator (admin-only feature)
+// Chart source URLs for each indicator
 const CHART_URLS: Record<string, string> = {
   globalM2: 'https://www.bitcoinmagazinepro.com/charts/global-liquidity/',
   financialConditions: 'https://fred.stlouisfed.org/series/NFCI',
@@ -65,7 +65,6 @@ const INDICATORS: Record<string, Phase> = {
       whyItMatters: "Loosening financial conditions have preceded every major BTC bull run. Unlike M2 (money quantity), this measures credit access and risk appetite. Simple: negative = loose = bullish.",
       source: "FRED NFCI series (updated Wednesdays)"
     }]
-
   },
   phase2: {
     title: "Phase 2: Deep Value Zone",
@@ -77,7 +76,6 @@ const INDICATORS: Record<string, Phase> = {
     { id: "reserveRisk", name: "Reserve Risk", weight: 2, description: "Measures the confidence of long-term holders relative to the price. High confidence + low price = low Reserve Risk = good time to buy.", bullishCondition: "Below 0.001 (green zone). HODLers are confident despite low prices.", bearishCondition: "Above 0.02 (red zone). Risk/reward unfavorable.", whyItMatters: "Captures when 'weak hands' are accumulating while price is depressed. Historically excellent at identifying asymmetric risk/reward setups.", source: "LookIntoBitcoin, Glassnode" },
     { id: "puellMultiple", name: "Puell Multiple", weight: 2, description: "Compares miner revenue today vs the 365-day average. Shows when miners are under stress (capitulating) or thriving.", bullishCondition: "Below 0.5 (green zone). Miners struggling — historically marks bottoms.", bearishCondition: "Above 4 (red zone). Miners highly profitable — often near tops.", whyItMatters: "Miner economics drive significant sell pressure. When the Puell Multiple is low, the worst of miner selling is typically over.", source: "LookIntoBitcoin, Glassnode" },
     { id: "ahr999", name: "Ahr999 Index", weight: 1, description: "Combines short-term cost basis with a geometric growth model to identify accumulation vs profit-taking zones.", bullishCondition: "Below 0.45 (dollar-cost-average zone). Below 1.2 is accumulation territory.", bearishCondition: "Above 1.2 (take profit zone).", whyItMatters: "Designed specifically to help long-term investors identify when to accumulate vs when to take profits based on valuation.", source: "LookIntoBitcoin" }]
-
   },
   phase3: {
     title: "Phase 3: Capitulation / Exhaustion",
@@ -87,7 +85,6 @@ const INDICATORS: Record<string, Phase> = {
     { id: "sopr", name: "SOPR (7d MA)", weight: 2, description: "Spent Output Profit Ratio — measures whether coins moving on-chain are being sold at a profit (>1) or loss (<1).", bullishCondition: "Recovering above 1 after spending time below. Holders no longer selling at a loss.", bearishCondition: "Below 1 and falling. Capitulation ongoing.", whyItMatters: "When SOPR recovers above 1 after a bear market, it signals the worst of the selling is over. Confirms the turn that Hash Ribbons suggests.", source: "Glassnode, CryptoQuant" },
     { id: "lthSupply", name: "LTH Supply Trend", weight: 2, description: "Tracks coins held by Long-Term Holders (155+ days). Accumulation = LTH supply increasing. Distribution = decreasing.", bullishCondition: "Rate of change turning negative (distribution starting) — signals new capital absorbing LTH selling.", bearishCondition: "Aggressive accumulation while price falling (early bear) OR aggressive distribution at highs (late bull).", whyItMatters: "LTH distribution after accumulation signals fresh capital entering. This is healthy bull market behavior.", source: "Glassnode" },
     { id: "realizedCapRoC", name: "Realized Cap Rate of Change", weight: 1, description: "Measures if new capital is entering (realized cap rising) or leaving (falling). Realized cap = aggregate cost basis of all BTC.", bullishCondition: "30-day rate of change turning positive. New capital entering at higher prices.", bearishCondition: "Realized cap falling. Capital leaving the network.", whyItMatters: "A rising realized cap means people are buying and holding at current prices — bullish conviction signal that upgrades your Realized Price indicator.", source: "Glassnode" }]
-
   },
   phase4: {
     title: "Phase 4: Confirmation",
@@ -96,7 +93,6 @@ const INDICATORS: Record<string, Phase> = {
     { id: "weeklyHigherLow", name: "Weekly Higher Low", weight: 1, description: "Basic price structure — are weekly candles making higher lows? This confirms the trend has actually changed.", bullishCondition: "3+ consecutive weekly higher lows established.", bearishCondition: "Still making lower lows. No trend reversal confirmed.", whyItMatters: "On-chain data can be early. This confirms the market is actually ACTING like a new bull regime before you add more size.", source: "Any charting platform (TradingView)" },
     { id: "stablecoinSupply", name: "Stablecoin Supply 90d Δ", weight: 1, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" },
     { id: "halvingCycle", name: "Halving Cycle Position", weight: 2, description: "Where are we relative to the ~4-year halving cycle? Historically, best returns come 12-18 months post-halving.", bullishCondition: "Within 6-18 months post-halving. Supply shock taking effect.", bearishCondition: "Late cycle (24+ months post-halving) or pre-halving bear.", whyItMatters: "Every halving cuts new BTC supply in half. The 12-18 month window after halving has historically produced the strongest returns.", source: "Calculate from block height (April 2024 was last halving)" }]
-
   }
 };
 
@@ -116,14 +112,12 @@ const getRegimeSignal = (percentage: number) => {
   return { label: 'GTFO BABY!', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Poor value. Want to end this cycle empty handed?' };
 };
 
-const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, isAdmin
-
-
-
-
-
-
-}: {indicator: Indicator;status: Status;onStatusChange: (status: Status) => void;expanded: boolean;onToggle: () => void;isAdmin: boolean;}) => {
+const IndicatorCard = ({ indicator, status, expanded, onToggle }: {
+  indicator: Indicator;
+  status: Status;
+  expanded: boolean;
+  onToggle: () => void;
+}) => {
   const statusConfig = STATUS_CONFIG[status];
   const chartUrl = CHART_URLS[indicator.id];
   const statusEmoji = status === 'bullish' ? '📈' : status === 'bearish' ? '📉' : '➖';
@@ -152,37 +146,18 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
       {expanded &&
       <div className="px-4 pb-4 border-t border-slate-700/50">
           <div className="pt-3.5 space-y-3">
-            {/* Status buttons - admin only, read-only badge for viewers */}
-            {isAdmin ?
-          <div className="flex gap-2">
-                {(Object.entries(STATUS_CONFIG) as [Status, typeof STATUS_CONFIG[Status]][]).map(([key, config]) =>
-            <button
-              key={key}
-              onClick={(e) => {e.stopPropagation();onStatusChange(key);}}
-              className={`flex-1 py-3 px-3 rounded-lg text-sm font-semibold transition-all min-h-[44px] active:scale-95 ${
-              status === key ? `${config.color} text-white` : 'bg-slate-700/50 text-slate-400 hover:bg-slate-700'}`
-              }>
+            <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg" style={{ background: `${statusConfig.bgColor}15` }}>
+              <div className={`w-2 h-2 rounded-full ${statusConfig.color}`} />
+              <span className={`text-sm font-semibold ${statusConfig.textColor}`}>Currently: {statusConfig.label}</span>
+            </div>
 
-                    {config.label}
-                  </button>
-            )}
-              </div> :
-
-          <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg" style={{ background: `${statusConfig.bgColor}15` }}>
-                <div className={`w-2 h-2 rounded-full ${statusConfig.color}`} />
-                <span className={`text-sm font-semibold ${statusConfig.textColor}`}>Currently: {statusConfig.label}</span>
-              </div>
-          }
-
-            {/* Chart link - admin only */}
-            {isAdmin && chartUrl &&
+            {chartUrl &&
           <a
             href={chartUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
             className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-400 text-sm no-underline hover:bg-blue-500/20 transition-colors">
-
                 <ExternalLink className="w-3 h-3" />
                 View Chart
               </a>
@@ -226,12 +201,19 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
           </div>
         </div>
       }
-    </div>);
-
+    </div>
+  );
 };
 
-const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndicatorStatusChange, expandedIndicator, onIndicatorToggle, isAdmin
-}: {phase: Phase;phaseKey: string;indicators: Record<string, Status>;expanded: boolean;onToggle: () => void;onIndicatorStatusChange: (id: string, status: Status) => void;expandedIndicator: string | null;onIndicatorToggle: (id: string) => void;isAdmin: boolean;}) => {
+const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, expandedIndicator, onIndicatorToggle }: {
+  phase: Phase;
+  phaseKey: string;
+  indicators: Record<string, Status>;
+  expanded: boolean;
+  onToggle: () => void;
+  expandedIndicator: string | null;
+  onIndicatorToggle: (id: string) => void;
+}) => {
   const phaseIndicators = INDICATORS[phaseKey].indicators;
   const phaseScore = phaseIndicators.reduce((acc, ind) => {
     const status = indicators[ind.id] || 'neutral';
@@ -240,24 +222,22 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndic
   const maxPhaseScore = phaseIndicators.reduce((acc, ind) => acc + ind.weight, 0);
 
   const getPhaseStatus = () => {
-    if (phaseScore > maxPhaseScore * 0.3) return { icon: CheckCircle, color: 'text-emerald-400' };
-    if (phaseScore < -maxPhaseScore * 0.3) return { icon: AlertCircle, color: 'text-red-400' };
-    return { icon: Clock, color: 'text-amber-400' };
+    if (phaseScore > maxPhaseScore * 0.3) return { color: 'text-emerald-400' };
+    if (phaseScore < -maxPhaseScore * 0.3) return { color: 'text-red-400' };
+    return { color: 'text-amber-400' };
   };
 
   const phaseStatus = getPhaseStatus();
-  const PhaseIcon = phaseStatus.icon;
 
   return (
     <div className="mb-4">
       <button
         onClick={onToggle}
         className="w-full p-4 bg-slate-800/80 rounded-xl border border-slate-700/50 flex items-center justify-between mb-2 min-h-[56px] active:bg-slate-700/60 transition-colors">
-
         <div className="flex items-center gap-3">
           <div className="text-left">
             <h3 className="font-bold text-slate-100 text-sm">{phase.title}</h3>
-              <p className="text-slate-500 text-xs mt-2">{phase.subtitle}</p>
+            <p className="text-slate-500 text-xs mt-2">{phase.subtitle}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -275,16 +255,13 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndic
           key={indicator.id}
           indicator={indicator}
           status={indicators[indicator.id] as Status || 'neutral'}
-          onStatusChange={(status) => onIndicatorStatusChange(indicator.id, status)}
           expanded={expandedIndicator === indicator.id}
-          onToggle={() => onIndicatorToggle(indicator.id)}
-          isAdmin={isAdmin} />
-
+          onToggle={() => onIndicatorToggle(indicator.id)} />
         )}
         </div>
       }
-    </div>);
-
+    </div>
+  );
 };
 
 export default function BTCRegimeTracker() {
@@ -294,122 +271,23 @@ export default function BTCRegimeTracker() {
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [updatedBy, setUpdatedBy] = useState<string | null>(null);
 
-  // PIN Auth State
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showPinModal, setShowPinModal] = useState(false);
-  const [pinInput, setPinInput] = useState('');
-  const [confirmPinInput, setConfirmPinInput] = useState('');
-  const [pinError, setPinError] = useState('');
-  const [isSettingPin, setIsSettingPin] = useState(false);
-  const [storedPin, setStoredPin] = useState<string | null>(null);
-
-  // Load data: fetch from indicator-data.json first, then overlay localStorage
+  // Load data from indicator-data.json
   useEffect(() => {
     const loadData = async () => {
       try {
-        const pin = localStorage.getItem('btc-tracker-pin');
-        if (pin) setStoredPin(pin);
-
-        // Fetch remote JSON data (updated by Perplexity agent via GitHub)
-        let remoteData: { indicators?: Record<string, Status>; lastUpdated?: string; updatedBy?: string } = {};
-        try {
-          const res = await fetch('/indicator-data.json');
-          if (res.ok) {
-            remoteData = await res.json();
-          }
-        } catch (e) {
-          console.log('Remote data fetch error:', e);
-        }
-
-        // Check localStorage for manual overrides
-        const saved = localStorage.getItem('btc-tracker-data');
-        let localData: { indicators?: Record<string, Status>; lastUpdated?: string; updatedBy?: string } = {};
-        if (saved) {
-          localData = JSON.parse(saved);
-        }
-
-        // Determine which data is newer
-        const remoteTime = remoteData.lastUpdated ? new Date(remoteData.lastUpdated).getTime() : 0;
-        const localTime = localData.lastUpdated ? new Date(localData.lastUpdated).getTime() : 0;
-
-        if (localTime > remoteTime && localData.indicators) {
-          // Local overrides are newer
-          setIndicators(localData.indicators);
-          setLastUpdated(localData.lastUpdated || null);
-          setUpdatedBy(localData.updatedBy || null);
-        } else if (remoteData.indicators) {
-          // Remote data is newer or same
-          setIndicators(remoteData.indicators);
-          setLastUpdated(remoteData.lastUpdated || null);
-          setUpdatedBy(remoteData.updatedBy || null);
+        const res = await fetch('/indicator-data.json');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.indicators) setIndicators(data.indicators);
+          if (data.lastUpdated) setLastUpdated(data.lastUpdated);
+          if (data.updatedBy) setUpdatedBy(data.updatedBy);
         }
       } catch (e) {
-        console.log('Data load error:', e);
+        console.log('Data fetch error:', e);
       }
     };
     loadData();
   }, []);
-
-  // Save data
-  const saveData = (newIndicators: Record<string, Status>) => {
-    try {
-      const data = {
-        indicators: newIndicators,
-        lastUpdated: new Date().toISOString(),
-        updatedBy: 'Admin'
-      };
-      localStorage.setItem('btc-tracker-data', JSON.stringify(data));
-      setLastUpdated(data.lastUpdated);
-      setUpdatedBy(data.updatedBy);
-    } catch (e) {
-      console.log('LocalStorage save error:', e);
-    }
-  };
-
-  const handleStatusChange = (id: string, status: Status) => {
-    if (!isAdmin) return;
-    const newIndicators = { ...indicators, [id]: status };
-    setIndicators(newIndicators);
-    saveData(newIndicators);
-  };
-
-  // PIN functions
-  const handlePinSubmit = () => {
-    if (!storedPin) {
-      if (pinInput.length < 4) {
-        setPinError('PIN must be at least 4 characters');
-        return;
-      }
-      if (pinInput !== confirmPinInput) {
-        setPinError('PINs do not match');
-        return;
-      }
-      localStorage.setItem('btc-tracker-pin', pinInput);
-      setStoredPin(pinInput);
-      setIsAdmin(true);
-      setShowPinModal(false);
-      setPinInput('');
-      setConfirmPinInput('');
-      setPinError('');
-    } else {
-      if (pinInput === storedPin) {
-        setIsAdmin(true);
-        setShowPinModal(false);
-        setPinInput('');
-        setPinError('');
-      } else {
-        setPinError('Incorrect PIN');
-      }
-    }
-  };
-
-  const openPinModal = () => {
-    setIsSettingPin(!storedPin);
-    setShowPinModal(true);
-    setPinInput('');
-    setConfirmPinInput('');
-    setPinError('');
-  };
 
   const allIndicators = Object.values(INDICATORS).flatMap((phase) => phase.indicators);
   const rawScore = allIndicators.reduce((acc, ind) => {
@@ -420,99 +298,14 @@ export default function BTCRegimeTracker() {
   const percentage = Math.round((rawScore + maxScore) / (2 * maxScore) * 100);
   const regime = getRegimeSignal(percentage);
 
-  const resetAll = () => {
-    if (!isAdmin) return;
-    setIndicators({});
-    try {localStorage.removeItem('btc-tracker-data');} catch (e) {}
-    setLastUpdated(null);
-    setUpdatedBy(null);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white max-w-md mx-auto">
-      {/* PIN Modal */}
-      {showPinModal &&
-      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-[320px] border border-slate-700 max-h-[90vh] overflow-y-auto">
-            <h3 className="text-base font-semibold text-slate-100 mb-4">
-              {isSettingPin ? '🔐 Set Admin PIN' : '🔓 Enter PIN'}
-            </h3>
-
-            <input
-            type="password"
-            placeholder="Enter PIN"
-            value={pinInput}
-            onChange={(e) => setPinInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handlePinSubmit()}
-            className="w-full p-3 rounded-lg border border-slate-600 bg-slate-900 text-white text-base mb-3 outline-none focus:border-blue-500" />
-
-
-            {isSettingPin &&
-          <input
-            type="password"
-            placeholder="Confirm PIN"
-            value={confirmPinInput}
-            onChange={(e) => setConfirmPinInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handlePinSubmit()}
-            className="w-full p-3 rounded-lg border border-slate-600 bg-slate-900 text-white text-base mb-3 outline-none focus:border-blue-500" />
-
-          }
-
-            {pinError &&
-          <p className="text-red-400 text-xs mb-3">{pinError}</p>
-          }
-
-            {isSettingPin &&
-          <p className="text-slate-500 text-[11px] mb-3">Min 4 characters. Letters, numbers, symbols allowed.</p>
-          }
-
-            <div className="flex gap-2">
-              <button
-              onClick={() => setShowPinModal(false)}
-              className="flex-1 py-3 rounded-lg bg-slate-700 text-slate-400 text-sm hover:bg-slate-600 transition-colors min-h-[44px] active:scale-95">
-
-                Cancel
-              </button>
-              <button
-              onClick={handlePinSubmit}
-              className="flex-1 py-3 rounded-lg bg-blue-500 text-white text-sm font-semibold hover:bg-blue-600 transition-colors min-h-[44px] active:scale-95">
-
-                {isSettingPin ? 'Set PIN' : 'Unlock'}
-              </button>
-            </div>
-          </div>
-        </div>
-      }
-
       {/* Header */}
       <div className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur-lg border-b border-slate-800/50">
         <div className="px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="font-bold text-slate-100 tracking-tight my-[20px] text-3xl">BTC Regime Tracker</h1>
-              <p className="text-slate-500 text-lg">​Is it Bull or Bear season?         </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={isAdmin ? () => setIsAdmin(false) : openPinModal}
-                className={`flex items-center gap-1.5 px-3 py-2 text-xs rounded-lg border transition-colors min-h-[44px] active:scale-95 ${
-                isAdmin ?
-                'bg-emerald-500/20 border-emerald-500/30 text-emerald-300' :
-                'bg-slate-700/50 border-slate-600/30 text-slate-400'}`
-                }>
-
-                {isAdmin ? <Unlock className="w-3.5 h-3.5" /> : <Lock className="w-3.5 h-3.5" />}
-                {isAdmin ? 'Admin' : 'Viewer'}
-              </button>
-              {isAdmin &&
-              <button
-                onClick={resetAll}
-                className="px-3 py-2 text-xs bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 transition-colors min-h-[44px] active:scale-95">
-
-                  Reset
-                </button>
-              }
-            </div>
+          <div>
+            <h1 className="font-bold text-slate-100 tracking-tight my-[20px] text-3xl">BTC Regime Tracker</h1>
+            <p className="text-slate-500 text-lg">​Is it Bull or Bear season?         </p>
           </div>
         </div>
       </div>
@@ -600,11 +393,8 @@ export default function BTCRegimeTracker() {
           indicators={indicators}
           expanded={expandedPhase === phaseKey}
           onToggle={() => setExpandedPhase(expandedPhase === phaseKey ? null : phaseKey)}
-          onIndicatorStatusChange={handleStatusChange}
           expandedIndicator={expandedIndicator}
-          onIndicatorToggle={(id) => setExpandedIndicator(expandedIndicator === id ? null : id)}
-          isAdmin={isAdmin} />
-
+          onIndicatorToggle={(id) => setExpandedIndicator(expandedIndicator === id ? null : id)} />
         )}
 
         {/* How to Use Guide */}
@@ -633,4 +423,6 @@ export default function BTCRegimeTracker() {
 
         <p className="mt-8 text-xs text-slate-500 italic text-center">Backtested, but not rigorously. Not financial advice.</p>
       </div>
-    </div>);}
+    </div>
+  );
+}
