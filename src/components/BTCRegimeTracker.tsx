@@ -58,7 +58,7 @@ const INDICATORS: Record<string, Phase> = {
       id: "financialConditions",
       name: "Financial Conditions Index",
       weight: 1,
-      description: "Chicago Fed NFCI measures stress in financial markets. Normalized to mean=0, std dev=1 since 1971. Weekly updates on FRED. This is a LEVEL indicator — no trend calculation needed.",
+      description: "Chicago Fed NFCI measures stress in financial markets. Normalized to mean=0, std dev=1 since 1971. Weekly updates on FRED. This is a LEVEL indicator \u2014 no trend calculation needed.",
       bullishCondition: "NFCI < 0 (looser than average). Ideal: NFCI < -0.5 (very loose). Currently at -0.56 = very loose.",
       bearishCondition: "NFCI > +0.5 (tight conditions). Crisis-level: NFCI > +1.0 (March 2020 spiked to +0.7).",
       neutralCondition: "NFCI between 0 and +0.5 (tighter than average but not crisis).",
@@ -71,27 +71,27 @@ const INDICATORS: Record<string, Phase> = {
     subtitle: "Is BTC historically cheap?",
     indicators: [
     { id: "mvrvZScore", name: "MVRV Z-Score", weight: 3, description: "Compares Bitcoin's market value to its realized value (aggregate cost basis), normalized by volatility. Identifies extreme over/undervaluation.", bullishCondition: "Below 0 (deep value). Ideal entry zone is below -0.5.", bearishCondition: "Above 3 (overheated). Cycle tops historically occur at 6-7+.", whyItMatters: "Near-perfect track record at identifying cycle bottoms. When MVRV Z-Score is in the green zone, buying has historically produced outsized returns.", source: "LookIntoBitcoin, Glassnode, CoinGlass" },
-    { id: "realizedPrice", name: "Price vs Realized Price", weight: 3, description: "Realized Price is the average price at which all BTC last moved on-chain — the aggregate cost basis of all holders.", bullishCondition: "Price below Realized Price (~$56-58K currently). Historically rare and excellent entry.", bearishCondition: "Price far above Realized Price. High MVRV ratio.", whyItMatters: "When price drops below realized price, the average holder is underwater. This has only happened at major cycle bottoms (2015, 2018, 2022).", source: "Glassnode, LookIntoBitcoin" },
+    { id: "realizedPrice", name: "Price vs Realized Price", weight: 3, description: "Realized Price is the average price at which all BTC last moved on-chain \u2014 the aggregate cost basis of all holders.", bullishCondition: "Price below Realized Price (~$56-58K currently). Historically rare and excellent entry.", bearishCondition: "Price far above Realized Price. High MVRV ratio.", whyItMatters: "When price drops below realized price, the average holder is underwater. This has only happened at major cycle bottoms (2015, 2018, 2022).", source: "Glassnode, LookIntoBitcoin" },
     { id: "twoHundredWeekMA", name: "200-Week Moving Average", weight: 3, description: "The 200-week moving average smooths out all short-term noise to show Bitcoin's true long-term trend.", bullishCondition: "Price at or below 200W MA (~$58K currently). Historically marks cycle bottoms.", bearishCondition: "Price extremely elevated above 200W MA (heatmap in red/orange zone).", whyItMatters: "BTC has spent very little time below this line in its history. Every touch of the 200W MA in bear markets has been a generational buying opportunity.", source: "BitcoinMagazinePro, TradingView" },
     { id: "reserveRisk", name: "Reserve Risk", weight: 2, description: "Measures the confidence of long-term holders relative to the price. High confidence + low price = low Reserve Risk = good time to buy.", bullishCondition: "Below 0.001 (green zone). HODLers are confident despite low prices.", bearishCondition: "Above 0.02 (red zone). Risk/reward unfavorable.", whyItMatters: "Captures when 'weak hands' are accumulating while price is depressed. Historically excellent at identifying asymmetric risk/reward setups.", source: "LookIntoBitcoin, Glassnode" },
-    { id: "puellMultiple", name: "Puell Multiple", weight: 2, description: "Compares miner revenue today vs the 365-day average. Shows when miners are under stress (capitulating) or thriving.", bullishCondition: "Below 0.5 (green zone). Miners struggling — historically marks bottoms.", bearishCondition: "Above 4 (red zone). Miners highly profitable — often near tops.", whyItMatters: "Miner economics drive significant sell pressure. When the Puell Multiple is low, the worst of miner selling is typically over.", source: "LookIntoBitcoin, Glassnode" },
+    { id: "puellMultiple", name: "Puell Multiple", weight: 2, description: "Compares miner revenue today vs the 365-day average. Shows when miners are under stress (capitulating) or thriving.", bullishCondition: "Below 0.5 (green zone). Miners struggling \u2014 historically marks bottoms.", bearishCondition: "Above 4 (red zone). Miners highly profitable \u2014 often near tops.", whyItMatters: "Miner economics drive significant sell pressure. When the Puell Multiple is low, the worst of miner selling is typically over.", source: "LookIntoBitcoin, Glassnode" },
     { id: "ahr999", name: "Ahr999 Index", weight: 1, description: "Combines short-term cost basis with a geometric growth model to identify accumulation vs profit-taking zones.", bullishCondition: "Below 0.45 (dollar-cost-average zone). Below 1.2 is accumulation territory.", bearishCondition: "Above 1.2 (take profit zone).", whyItMatters: "Designed specifically to help long-term investors identify when to accumulate vs when to take profits based on valuation.", source: "LookIntoBitcoin" }]
   },
   phase3: {
     title: "Phase 3: Exhaustion",
     subtitle: "Have sellers run out of coins?",
     indicators: [
-    { id: "hashRibbons", name: "Hash Ribbons", weight: 3, description: "Tracks when miners capitulate (30d MA crosses below 60d MA) and when they recover. 'Buy' signal fires when 30d crosses back above 60d.", bullishCondition: "Buy signal active — 30d MA crossed back above 60d MA after capitulation.", bearishCondition: "Deep capitulation ongoing — 30d MA falling further below 60d MA.", whyItMatters: "\"When miners give up, it's possibly the most powerful Bitcoin buy signal ever.\" Has caught every major cycle bottom. Your PRIMARY entry trigger.", source: "LookIntoBitcoin, Glassnode, Capriole" },
-    { id: "sopr", name: "SOPR (7d MA)", weight: 2, description: "Spent Output Profit Ratio — measures whether coins moving on-chain are being sold at a profit (>1) or loss (<1).", bullishCondition: "Recovering above 1 after spending time below. Holders no longer selling at a loss.", bearishCondition: "Below 1 and falling. Capitulation ongoing.", whyItMatters: "When SOPR recovers above 1 after a bear market, it signals the worst of the selling is over. Confirms the turn that Hash Ribbons suggests.", source: "Glassnode, CryptoQuant" },
-    { id: "lthSupply", name: "LTH Supply Trend", weight: 2, description: "Tracks coins held by Long-Term Holders (155+ days). Accumulation = LTH supply increasing. Distribution = decreasing.", bullishCondition: "Rate of change turning negative (distribution starting) — signals new capital absorbing LTH selling.", bearishCondition: "Aggressive accumulation while price falling (early bear) OR aggressive distribution at highs (late bull).", whyItMatters: "LTH distribution after accumulation signals fresh capital entering. This is healthy bull market behavior.", source: "Glassnode" },
-    { id: "realizedCapRoC", name: "Realized Cap Rate of Change", weight: 1, description: "Measures if new capital is entering (realized cap rising) or leaving (falling). Realized cap = aggregate cost basis of all BTC.", bullishCondition: "30-day rate of change turning positive. New capital entering at higher prices.", bearishCondition: "Realized cap falling. Capital leaving the network.", whyItMatters: "A rising realized cap means people are buying and holding at current prices — bullish conviction signal that upgrades your Realized Price indicator.", source: "Glassnode" }]
+    { id: "hashRibbons", name: "Hash Ribbons", weight: 3, description: "Tracks when miners capitulate (30d MA crosses below 60d MA) and when they recover. 'Buy' signal fires when 30d crosses back above 60d.", bullishCondition: "Buy signal active \u2014 30d MA crossed back above 60d MA after capitulation.", bearishCondition: "Deep capitulation ongoing \u2014 30d MA falling further below 60d MA.", whyItMatters: "\"When miners give up, it's possibly the most powerful Bitcoin buy signal ever.\" Has caught every major cycle bottom. Your PRIMARY entry trigger.", source: "LookIntoBitcoin, Glassnode, Capriole" },
+    { id: "sopr", name: "SOPR (7d MA)", weight: 2, description: "Spent Output Profit Ratio \u2014 measures whether coins moving on-chain are being sold at a profit (>1) or loss (<1).", bullishCondition: "Recovering above 1 after spending time below. Holders no longer selling at a loss.", bearishCondition: "Below 1 and falling. Capitulation ongoing.", whyItMatters: "When SOPR recovers above 1 after a bear market, it signals the worst of the selling is over. Confirms the turn that Hash Ribbons suggests.", source: "Glassnode, CryptoQuant" },
+    { id: "lthSupply", name: "LTH Supply Trend", weight: 2, description: "Tracks coins held by Long-Term Holders (155+ days). Accumulation = LTH supply increasing. Distribution = decreasing.", bullishCondition: "Rate of change turning negative (distribution starting) \u2014 signals new capital absorbing LTH selling.", bearishCondition: "Aggressive accumulation while price falling (early bear) OR aggressive distribution at highs (late bull).", whyItMatters: "LTH distribution after accumulation signals fresh capital entering. This is healthy bull market behavior.", source: "Glassnode" },
+    { id: "realizedCapRoC", name: "Realized Cap Rate of Change", weight: 1, description: "Measures if new capital is entering (realized cap rising) or leaving (falling). Realized cap = aggregate cost basis of all BTC.", bullishCondition: "30-day rate of change turning positive. New capital entering at higher prices.", bearishCondition: "Realized cap falling. Capital leaving the network.", whyItMatters: "A rising realized cap means people are buying and holding at current prices \u2014 bullish conviction signal that upgrades your Realized Price indicator.", source: "Glassnode" }]
   },
   phase4: {
     title: "Phase 4: Confirmation",
     subtitle: "Does price structure agree?",
     indicators: [
-    { id: "weeklyHigherLow", name: "Weekly Higher Low", weight: 1, description: "Basic price structure — are weekly candles making higher lows? This confirms the trend has actually changed.", bullishCondition: "3+ consecutive weekly higher lows established.", bearishCondition: "Still making lower lows. No trend reversal confirmed.", whyItMatters: "On-chain data can be early. This confirms the market is actually ACTING like a new bull regime before you add more size.", source: "Any charting platform (TradingView)" },
-    { id: "stablecoinSupply", name: "Stablecoin Supply 90d Δ", weight: 1, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" },
+    { id: "weeklyHigherLow", name: "Weekly Higher Low", weight: 1, description: "Basic price structure \u2014 are weekly candles making higher lows? This confirms the trend has actually changed.", bullishCondition: "3+ consecutive weekly higher lows established.", bearishCondition: "Still making lower lows. No trend reversal confirmed.", whyItMatters: "On-chain data can be early. This confirms the market is actually ACTING like a new bull regime before you add more size.", source: "Any charting platform (TradingView)" },
+    { id: "stablecoinSupply", name: "Stablecoin Supply 90d \u0394", weight: 1, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" },
     { id: "halvingCycle", name: "Halving Cycle Position", weight: 2, description: "Where are we relative to the ~4-year halving cycle? Historically, best returns come 12-18 months post-halving.", bullishCondition: "Within 6-18 months post-halving. Supply shock taking effect.", bearishCondition: "Late cycle (24+ months post-halving) or pre-halving bear.", whyItMatters: "Every halving cuts new BTC supply in half. The 12-18 month window after halving has historically produced the strongest returns.", source: "Calculate from block height (April 2024 was last halving)" }]
   }
 };
@@ -112,15 +112,9 @@ const getRegimeSignal = (percentage: number) => {
   return { label: 'GTFO, Baby!', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'Poor value. Want to end this cycle empty handed?' };
 };
 
-const IndicatorCard = ({ indicator, status, expanded, onToggle
-
-
-
-
-}: {indicator: Indicator;status: Status;expanded: boolean;onToggle: () => void;}) => {
+const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: Indicator;status: Status;expanded: boolean;onToggle: () => void;}) => {
   const statusConfig = STATUS_CONFIG[status];
   const chartUrl = CHART_URLS[indicator.id];
-  
 
   return (
     <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden mb-2">
@@ -134,7 +128,7 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-slate-500 flex-shrink-0">×{indicator.weight}</span>
+          <span className="text-sm text-slate-500 flex-shrink-0">\u00d7{indicator.weight}</span>
           <div className={`w-2.5 h-2.5 rounded-full ${statusConfig.color}`} />
           {expanded ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
         </div>
@@ -199,18 +193,9 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle
         </div>
       }
     </div>);
-
 };
 
-const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, expandedIndicator, onIndicatorToggle
-
-
-
-
-
-
-
-}: {phase: Phase;phaseKey: string;indicators: Record<string, Status>;expanded: boolean;onToggle: () => void;expandedIndicator: string | null;onIndicatorToggle: (id: string) => void;}) => {
+const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, expandedIndicator, onIndicatorToggle }: {phase: Phase;phaseKey: string;indicators: Record<string, Status>;expanded: boolean;onToggle: () => void;expandedIndicator: string | null;onIndicatorToggle: (id: string) => void;}) => {
   const phaseIndicators = INDICATORS[phaseKey].indicators;
   const phaseScore = phaseIndicators.reduce((acc, ind) => {
     const status = indicators[ind.id] || 'neutral';
@@ -258,7 +243,6 @@ const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, expande
         </div>
       }
     </div>);
-
 };
 
 export default function BTCRegimeTracker() {
@@ -272,7 +256,7 @@ export default function BTCRegimeTracker() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await fetch('/indicator-data.json');
+        const res = await fetch(`${import.meta.env.BASE_URL}indicator-data.json`);
         if (res.ok) {
           const data = await res.json();
           if (data.indicators) setIndicators(data.indicators);
@@ -345,31 +329,31 @@ export default function BTCRegimeTracker() {
             <table className="border-collapse table-auto w-auto">
               <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
                 <tr>
-                  <td className="w-4 pr-2 text-emerald-500">■</td>
+                  <td className="w-4 pr-2 text-emerald-500">\u25a0</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">81-100%</td>
                   <td className="px-1">:</td>
                   <td>Max Long, LFG!</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-[#69c38a]">■</td>
+                  <td className="w-4 pr-2 text-[#69c38a]">\u25a0</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">61-80%</td>
                   <td className="px-1">:</td>
                   <td>Accumulation Zone</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-yellow-500">■</td>
+                  <td className="w-4 pr-2 text-yellow-500">\u25a0</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">41-60%</td>
                   <td className="px-1">:</td>
                   <td>Patience...</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-orange-500">■</td>
+                  <td className="w-4 pr-2 text-orange-500">\u25a0</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">21-40%</td>
                   <td className="px-1">:</td>
                   <td>Distribution Zone</td>
                 </tr>
                 <tr>
-                  <td className="w-4 pr-2 text-red-500">■</td>
+                  <td className="w-4 pr-2 text-red-500">\u25a0</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">0-20%</td>
                   <td className="px-1">:</td>
                   <td>GTFO, Baby!</td>
@@ -412,9 +396,9 @@ export default function BTCRegimeTracker() {
           <h4 className="font-semibold text-slate-200 text-base mb-4">Indicator Weights System</h4>
           <div className="text-sm text-slate-400 leading-relaxed space-y-1.5">
             <p className="mb-4">Some indicators are more important than others. The higher the weight the more useful.</p>
-            <p><span className="text-slate-300 font-medium">×3: Near perfect track record</span><br />MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
-            <p><span className="text-slate-300 font-medium">×2: Excellent but sometimes early</span><br />Puell, Reserve Risk, LTH Supply, SOPR, Halving</p>
-            <p><span className="text-slate-300 font-medium">×1: Useful confirmation</span><br />Macro indicators, stablecoins, price structure</p>
+            <p><span className="text-slate-300 font-medium">\u00d73: Near perfect track record</span><br />MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
+            <p><span className="text-slate-300 font-medium">\u00d72: Excellent but sometimes early</span><br />Puell, Reserve Risk, LTH Supply, SOPR, Halving</p>
+            <p><span className="text-slate-300 font-medium">\u00d71: Useful confirmation</span><br />Macro indicators, stablecoins, price structure</p>
           </div>
         </div>
 
