@@ -88,7 +88,7 @@ const INDICATORS: Record<string, Phase> = {
   },
   phase4: {
     title: "Phase 4: Confirmation",
-    subtitle: "Does price structure confirm the turn?",
+    subtitle: "Does price structure agree?",
     indicators: [
     { id: "weeklyHigherLow", name: "Weekly Higher Low", weight: 1, description: "Basic price structure — are weekly candles making higher lows? This confirms the trend has actually changed.", bullishCondition: "3+ consecutive weekly higher lows established.", bearishCondition: "Still making lower lows. No trend reversal confirmed.", whyItMatters: "On-chain data can be early. This confirms the market is actually ACTING like a new bull regime before you add more size.", source: "Any charting platform (TradingView)" },
     { id: "stablecoinSupply", name: "Stablecoin Supply 90d Δ", weight: 1, description: "Tracks 90-day change in total stablecoin supply (USDT, USDC, etc). Represents 'dry powder' on the sidelines.", bullishCondition: "Supply expanding after contraction. New capital entering crypto ecosystem.", bearishCondition: "Supply contracting. Capital leaving the ecosystem.", whyItMatters: "Stablecoins are the ammunition. When supply expands, there's fresh capital ready to deploy into BTC.", source: "DefiLlama (free API)" },
