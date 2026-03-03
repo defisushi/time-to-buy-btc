@@ -298,7 +298,7 @@ export default function BTCRegimeTracker() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white max-w-md mx-auto">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur-lg border-b border-slate-800/50">
+      <div className="border-b border-slate-800/50">
         <div className="px-4 py-3">
           <div>
             <h1 className="font-bold text-slate-100 tracking-tight my-[20px] text-3xl">BTC Regime Tracker</h1>
