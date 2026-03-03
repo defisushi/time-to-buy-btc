@@ -417,7 +417,7 @@ export default function BTCRegimeTracker() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white max-w-md mx-auto">
       {/* PIN Modal */}
       {showPinModal &&
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
