@@ -588,15 +588,12 @@ export default function BTCRegimeTracker() {
           {/* Score Thresholds */}
           <div className="mt-3 p-2.5 bg-slate-700/30 rounded-lg border border-slate-600/30">
             <p className="text-[11px] text-slate-400 mb-1.5 font-semibold">Score Thresholds:</p>
-            <div className="text-[10px] text-slate-400 leading-relaxed">■ 80-100% = Max Long, LFG!
-■ 65-79% = Accumulation Zone
-■ 40-64% = Patience...  
-■ 20-39% = Distribution Zone  
-■ 0-19% = GTFO baby!<span className="text-emerald-500">■</span> 80-100% = High Conviction Long &nbsp;
+            <div className="text-[10px] text-slate-400 leading-relaxed">
+              <span className="text-emerald-500">■</span> 80-100% = Max Long, LFG! &nbsp;
               <span className="text-[#69c38a]">■</span> 65-79% = Accumulation Zone<br />
-              <span className="text-yellow-500">■</span> 40-64% = Neutral / Wait &nbsp;
-              <span className="text-orange-500">■</span> 20-39% = Caution &nbsp;
-              <span className="text-red-500">■</span> 0-19% = Risk Off
+              <span className="text-yellow-500">■</span> 40-64% = Patience... &nbsp;
+              <span className="text-orange-500">■</span> 20-39% = Distribution Zone &nbsp;
+              <span className="text-red-500">■</span> 0-19% = GTFO baby!
             </div>
           </div>
 
