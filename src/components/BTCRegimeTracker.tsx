@@ -602,5 +602,7 @@ export default function BTCRegimeTracker() {
             <p><span className="text-slate-300 font-medium">×1: Useful confirmation</span><br/>Macro indicators, stablecoins, price structure</p>
           </div>
         </div>
+
+        <p className="mt-4 text-xs text-slate-500 italic text-center">Backtested, but not rigorously. Not financial advice.</p>
       </div>
     </div>);}
