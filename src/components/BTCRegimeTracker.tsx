@@ -551,12 +551,41 @@ export default function BTCRegimeTracker() {
       <div className="px-4 mb-4">
         <div className="p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
           <h4 className="font-semibold text-slate-200 text-base mb-2.5">Score Thresholds</h4>
-          <div className="text-sm text-slate-400 space-y-1.5 leading-relaxed">
-            <div className="flex items-center"><span className="text-emerald-500 mr-2">■</span><span className="text-slate-300 font-medium whitespace-nowrap mr-1">80-100%</span><span className="mr-1.5">:</span><span>Max Long, LFG!</span></div>
-            <div className="flex items-center"><span className="text-[#69c38a] mr-2">■</span><span className="text-slate-300 font-medium whitespace-nowrap mr-1">65-79%</span><span className="mr-1.5">:</span><span>Accumulation Zone</span></div>
-            <div className="flex items-center"><span className="text-yellow-500 mr-2">■</span><span className="text-slate-300 font-medium whitespace-nowrap mr-1">40-64%</span><span className="mr-1.5">:</span><span>Patience...</span></div>
-            <div className="flex items-center"><span className="text-orange-500 mr-2">■</span><span className="text-slate-300 font-medium whitespace-nowrap mr-1">20-39%</span><span className="mr-1.5">:</span><span>Distribution Zone</span></div>
-            <div className="flex items-center"><span className="text-red-500 mr-2">■</span><span className="text-slate-300 font-medium whitespace-nowrap mr-1">0-19%</span><span className="mr-1.5">:</span><span>GTFO baby!</span></div>
+          <div className="text-sm text-slate-400 leading-relaxed">
+            <table className="w-full border-collapse">
+              <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
+                <tr>
+                  <td className="w-4 pr-2 text-emerald-500">■</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">80-100%</td>
+                  <td className="px-1">:</td>
+                  <td>Max Long, LFG!</td>
+                </tr>
+                <tr>
+                  <td className="w-4 pr-2 text-[#69c38a]">■</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">65-79%</td>
+                  <td className="px-1">:</td>
+                  <td>Accumulation Zone</td>
+                </tr>
+                <tr>
+                  <td className="w-4 pr-2 text-yellow-500">■</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">40-64%</td>
+                  <td className="px-1">:</td>
+                  <td>Patience...</td>
+                </tr>
+                <tr>
+                  <td className="w-4 pr-2 text-orange-500">■</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">20-39%</td>
+                  <td className="px-1">:</td>
+                  <td>Distribution Zone</td>
+                </tr>
+                <tr>
+                  <td className="w-4 pr-2 text-red-500">■</td>
+                  <td className="text-slate-300 font-medium whitespace-nowrap">0-19%</td>
+                  <td className="px-1">:</td>
+                  <td>GTFO baby!</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
