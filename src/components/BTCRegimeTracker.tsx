@@ -238,15 +238,6 @@ const IndicatorCard = ({ indicator, status, onStatusChange, expanded, onToggle, 
 };
 
 const PhaseSection = ({ phase, phaseKey, indicators, expanded, onToggle, onIndicatorStatusChange, expandedIndicator, onIndicatorToggle, isAdmin
-
-
-
-
-
-
-
-
-
 }: {phase: Phase;phaseKey: string;indicators: Record<string, Status>;expanded: boolean;onToggle: () => void;onIndicatorStatusChange: (id: string, status: Status) => void;expandedIndicator: string | null;onIndicatorToggle: (id: string) => void;isAdmin: boolean;}) => {
   const phaseIndicators = INDICATORS[phaseKey].indicators;
   const phaseScore = phaseIndicators.reduce((acc, ind) => {
@@ -535,6 +526,19 @@ export default function BTCRegimeTracker() {
         }
       </div>
 
+      {/* Score Thresholds */}
+      <div className="px-4 mb-4">
+        <div className="p-3 bg-slate-800/50 rounded-xl border border-slate-700/30">
+          <p className="text-sm text-slate-400 mb-1.5 font-semibold">Score Thresholds:</p>
+          <div className="text-sm text-slate-400 leading-loose">
+            <span className="text-emerald-500">■</span> 80-100% = Max Long, LFG!<br />
+            <span className="text-[#69c38a]">■</span> 65-79% = Accumulation Zone<br />
+            <span className="text-yellow-500">■</span> 40-64% = Patience...<br />
+            <span className="text-orange-500">■</span> 20-39% = Distribution Zone<br />
+            <span className="text-red-500">■</span> 0-19% = GTFO baby!
+          </div>
+        </div>
+      </div>
 
       {/* Phase Sections */}
       <div className="px-4 pb-24">
@@ -574,17 +578,6 @@ export default function BTCRegimeTracker() {
             </p>
           </div>
 
-          {/* Score Thresholds */}
-          <div className="mt-3 p-2.5 bg-slate-700/30 rounded-lg border border-slate-600/30">
-            <p className="text-sm text-slate-400 mb-1.5 font-semibold">Score Thresholds:</p>
-            <div className="text-sm text-slate-400 leading-loose">
-              <span className="text-emerald-500">■</span> 80-100% = Max Long, LFG!<br />
-              <span className="text-[#69c38a]">■</span> 65-79% = Accumulation Zone<br />
-              <span className="text-yellow-500">■</span> 40-64% = Patience...<br />
-              <span className="text-orange-500">■</span> 20-39% = Distribution Zone<br />
-              <span className="text-red-500">■</span> 0-19% = GTFO baby!
-            </div>
-          </div>
 
           {/* Phase 1 Quick Reference */}
           <div className="mt-3 p-2.5 bg-blue-500/10 rounded-lg border border-blue-500/20">
