@@ -587,8 +587,7 @@ export default function BTCRegimeTracker() {
 
         {/* How to Use Guide */}
         <div className="mt-6 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-base mb-2.5 flex items-center gap-2">
-            <Info className="w-4 h-4 text-blue-400" />
+          <h4 className="font-semibold text-slate-200 text-base mb-2.5">
             How to Use This
           </h4>
           <ol className="text-sm text-slate-400 space-y-2 list-decimal list-inside leading-relaxed">
@@ -609,7 +608,7 @@ export default function BTCRegimeTracker() {
 
           {/* Phase 1 Quick Reference */}
           <div className="mt-3 p-2.5 bg-blue-500/10 rounded-lg border border-blue-500/20">
-            <p className="text-sm text-blue-300 mb-2 font-semibold">📐 Phase 1 Quick Reference (Quantitative):</p>
+            <p className="text-sm text-blue-300 mb-2 font-semibold">Phase 1 Quick Reference (Quantitative):</p>
             <div className="text-sm text-slate-400 leading-loose">
               <span className="text-slate-300 font-medium">NFCI (Financial Conditions):</span><br />
               &nbsp;&nbsp;🟢 Bullish: &lt; 0 &nbsp; | &nbsp; 🟡 Neutral: 0 to +0.5 &nbsp; | &nbsp; 🔴 Bearish: &gt; +0.5<br />
