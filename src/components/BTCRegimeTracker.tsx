@@ -80,7 +80,7 @@ const INDICATORS: Record<string, Phase> = {
 
   },
   phase3: {
-    title: "Phase 3: Capitulation Exhaustion",
+    title: "Phase 3: Capitulation / Exhaustion",
     subtitle: "Are sellers exhausted?",
     indicators: [
     { id: "hashRibbons", name: "Hash Ribbons", weight: 3, description: "Tracks when miners capitulate (30d MA crosses below 60d MA) and when they recover. 'Buy' signal fires when 30d crosses back above 60d.", bullishCondition: "Buy signal active — 30d MA crossed back above 60d MA after capitulation.", bearishCondition: "Deep capitulation ongoing — 30d MA falling further below 60d MA.", whyItMatters: "\"When miners give up, it's possibly the most powerful Bitcoin buy signal ever.\" Has caught every major cycle bottom. Your PRIMARY entry trigger.", source: "LookIntoBitcoin, Glassnode, Capriole" },
