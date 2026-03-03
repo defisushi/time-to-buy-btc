@@ -78,8 +78,8 @@ const INDICATORS: Record<string, Phase> = {
     { id: "ahr999", name: "Ahr999 Index", weight: 1, description: "Combines short-term cost basis with a geometric growth model to identify accumulation vs profit-taking zones.", bullishCondition: "Below 0.45 (dollar-cost-average zone). Below 1.2 is accumulation territory.", bearishCondition: "Above 1.2 (take profit zone).", whyItMatters: "Designed specifically to help long-term investors identify when to accumulate vs when to take profits based on valuation.", source: "LookIntoBitcoin" }]
   },
   phase3: {
-    title: "Phase 3: Capitulation / Exhaustion",
-    subtitle: "Are sellers exhausted?",
+    title: "Phase 3: Exhaustion",
+    subtitle: "Have sellers run out of coins?",
     indicators: [
     { id: "hashRibbons", name: "Hash Ribbons", weight: 3, description: "Tracks when miners capitulate (30d MA crosses below 60d MA) and when they recover. 'Buy' signal fires when 30d crosses back above 60d.", bullishCondition: "Buy signal active — 30d MA crossed back above 60d MA after capitulation.", bearishCondition: "Deep capitulation ongoing — 30d MA falling further below 60d MA.", whyItMatters: "\"When miners give up, it's possibly the most powerful Bitcoin buy signal ever.\" Has caught every major cycle bottom. Your PRIMARY entry trigger.", source: "LookIntoBitcoin, Glassnode, Capriole" },
     { id: "sopr", name: "SOPR (7d MA)", weight: 2, description: "Spent Output Profit Ratio — measures whether coins moving on-chain are being sold at a profit (>1) or loss (<1).", bullishCondition: "Recovering above 1 after spending time below. Holders no longer selling at a loss.", bearishCondition: "Below 1 and falling. Capitulation ongoing.", whyItMatters: "When SOPR recovers above 1 after a bear market, it signals the worst of the selling is over. Confirms the turn that Hash Ribbons suggests.", source: "Glassnode, CryptoQuant" },
