@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 // Chart source URLs for each indicator
-const CHART_URLS: Record<string, string> = {
-  globalM2: 'https://www.bitcoinmagazinepro.com/charts/global-liquidity/',
-  financialConditions: 'https://fred.stlouisfed.org/series/NFCI',
-  mvrvZScore: 'https://www.bitcoinmagazinepro.com/charts/mvrv-zscore/',
-  realizedPrice: 'https://www.bitcoinmagazinepro.com/charts/realized-price/',
-  twoHundredWeekMA: 'https://www.bitcoinmagazinepro.com/charts/200-week-moving-average-heatmap/',
-  reserveRisk: 'https://www.bitcoinmagazinepro.com/charts/reserve-risk/',
-  puellMultiple: 'https://www.bitcoinmagazinepro.com/charts/puell-multiple/',
-  ahr999: 'https://www.bitcoinmagazinepro.com/charts/bitcoin-investor-tool/',
-  hashRibbons: 'https://www.bitcoinmagazinepro.com/charts/hash-ribbons/',
-  sopr: 'https://www.bitcoinmagazinepro.com/charts/sopr/',
-  lthSupply: 'https://www.bitcoinmagazinepro.com/charts/long-term-holder-supply/',
-  
-  weeklyHigherLow: 'https://www.tradingview.com/chart/?symbol=BTCUSD',
-  stablecoinSupply: 'https://defillama.com/stablecoins',
-  halvingCycle: 'https://www.bitcoinmagazinepro.com/charts/stock-to-flow/'
+const DATA_SOURCES: Record<string, { name: string; url?: string }> = {
+  globalM2: { name: 'CoinGlass', url: 'https://www.coinglass.com/pro/i/bitcoin-m2-supply-growth' },
+  financialConditions: { name: 'FRED', url: 'https://fred.stlouisfed.org/series/NFCI' },
+  mvrvZScore: { name: 'Bitcoin Magazine Pro', url: 'https://www.bitcoinmagazinepro.com/charts/mvrv-zscore/' },
+  realizedPrice: { name: 'Bitcoin Magazine Pro', url: 'https://www.bitcoinmagazinepro.com/charts/realized-price/' },
+  twoHundredWeekMA: { name: 'Bitcoin Magazine Pro', url: 'https://www.bitcoinmagazinepro.com/charts/200-week-moving-average-heatmap/' },
+  reserveRisk: { name: 'Bitcoin Magazine Pro', url: 'https://www.bitcoinmagazinepro.com/charts/reserve-risk/' },
+  puellMultiple: { name: 'Bitcoin Magazine Pro', url: 'https://www.bitcoinmagazinepro.com/charts/puell-multiple/' },
+  ahr999: { name: 'CoinGlass', url: 'https://www.coinglass.com/pro/i/ahr999' },
+  hashRibbons: { name: 'CoinGlass', url: 'https://www.coinglass.com/pro/i/bitcoin-hash-ribbons-indicator' },
+  sopr: { name: 'BGeometrics', url: 'https://charts.bgeometrics.com/sopr.html' },
+  lthSupply: { name: 'Bitcoin Magazine Pro', url: 'https://www.bitcoinmagazinepro.com/charts/long-term-holder-supply/' },
+  weeklyHigherLow: { name: 'TradingView', url: 'https://www.tradingview.com/chart/?symbol=COINBASE%3ABTCUSD' },
+  stablecoinSupply: { name: 'DefiLlama', url: 'https://defillama.com/' },
+  halvingCycle: { name: 'Calculated from next halving block height' },
 };
 
 interface Indicator {
@@ -113,7 +112,7 @@ const getRegimeSignal = (percentage: number) => {
 
 const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: Indicator;status: Status;expanded: boolean;onToggle: () => void;}) => {
   const statusConfig = STATUS_CONFIG[status];
-  const chartUrl = CHART_URLS[indicator.id];
+  const dataSource = DATA_SOURCES[indicator.id];
 
   return (
     <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden mb-2">
@@ -140,18 +139,6 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: In
               <div className={`w-2 h-2 rounded-full ${statusConfig.color}`} />
               <span className={`text-sm font-semibold ${statusConfig.textColor}`}>Currently: {statusConfig.label}</span>
             </div>
-
-            {chartUrl &&
-          <a
-            href={chartUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-400 text-sm no-underline hover:bg-blue-500/20 transition-colors">
-                <ExternalLink className="w-3 h-3" />
-                View Chart
-              </a>
-          }
 
             <p className="text-sm text-slate-400 leading-relaxed">{indicator.description}</p>
 
@@ -186,7 +173,11 @@ const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: In
             </div>
 
             <div className="flex items-center gap-2 text-sm text-slate-500">
-              <span>Source: {indicator.source}</span>
+              <span>Source: {dataSource?.url ? (
+                <a href={dataSource.url} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors">{dataSource.name}</a>
+              ) : (
+                <span className="text-slate-400">{dataSource?.name}</span>
+              )}</span>
             </div>
           </div>
         </div>
