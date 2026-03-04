@@ -389,28 +389,32 @@ export default function BTCRegimeTracker() {
         )}
 
         {/* How to Use Guide */}
-        <div className="mt-6 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-base mb-4">
+        <details className="mt-6 bg-slate-800/30 rounded-xl border border-slate-700/30 group">
+          <summary className="p-4 font-semibold text-slate-200 text-base cursor-pointer list-none flex items-center justify-between [&::-webkit-details-marker]:hidden">
             How to Use This
-          </h4>
-          <div className="text-sm text-slate-400 space-y-3 leading-relaxed">
+            <svg className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-4 pb-4 text-sm text-slate-400 space-y-3 leading-relaxed">
             <p><span className="text-slate-300 font-medium">Phase 1: Macro</span><br />Must be neutral or bullish to have permission to play.</p>
             <p><span className="text-slate-300 font-medium">Phase 2: Value</span><br />Tells you if BTC is cheap. Not always a buy signal yet.</p>
             <p><span className="text-slate-300 font-medium">Phase 3: Exhaustion</span><br />Your primary trigger, especially Hash Ribbons.</p>
             <p><span className="text-slate-300 font-medium">Phase 4: Confirmation</span><br />Additional signs that support size.</p>
           </div>
-        </div>
+        </details>
 
         {/* Weight System */}
-        <div className="mt-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
-          <h4 className="font-semibold text-slate-200 text-base mb-4">Indicator Weights System</h4>
-          <div className="text-sm text-slate-400 leading-relaxed space-y-1.5">
+        <details className="mt-4 bg-slate-800/30 rounded-xl border border-slate-700/30 group">
+          <summary className="p-4 font-semibold text-slate-200 text-base cursor-pointer list-none flex items-center justify-between [&::-webkit-details-marker]:hidden">
+            Indicator Weights System
+            <svg className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-4 pb-4 text-sm text-slate-400 leading-relaxed space-y-1.5">
             <p className="mb-4">Some indicators are more important than others. The higher the weight the more useful.</p>
             <p><span className="text-slate-300 font-medium">{"\u00d7"}3: Near perfect track record</span><br />MVRV Z-Score, Hash Ribbons, 200-Week MA, Realized Price</p>
             <p><span className="text-slate-300 font-medium">{"\u00d7"}2: Excellent but sometimes early</span><br />Puell, Reserve Risk, LTH Supply, SOPR, Halving</p>
             <p><span className="text-slate-300 font-medium">{"\u00d7"}1: Useful confirmation</span><br />Macro indicators, stablecoins, price structure</p>
           </div>
-        </div>
+        </details>
 
         <p className="mt-8 text-xs text-slate-500 italic text-center">Backtested, but not rigorously. Not financial advice.</p>
       </div>
