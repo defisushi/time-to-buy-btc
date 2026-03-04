@@ -325,7 +325,7 @@ export default function BTCRegimeTracker() {
             <span className="text-xs text-slate-500">
               Updates weekly. Last update {new Date(lastUpdated).toLocaleDateString('en-US', {
               day: 'numeric', month: 'short'
-            })}
+            })}.
             </span>
           </div>
         }
