@@ -14,7 +14,7 @@ const CHART_URLS: Record<string, string> = {
   hashRibbons: 'https://www.bitcoinmagazinepro.com/charts/hash-ribbons/',
   sopr: 'https://www.bitcoinmagazinepro.com/charts/sopr/',
   lthSupply: 'https://www.bitcoinmagazinepro.com/charts/long-term-holder-supply/',
-  realizedCapRoC: 'https://www.bitcoinmagazinepro.com/charts/realized-cap/',
+  
   weeklyHigherLow: 'https://www.tradingview.com/chart/?symbol=BTCUSD',
   stablecoinSupply: 'https://defillama.com/stablecoins',
   halvingCycle: 'https://www.bitcoinmagazinepro.com/charts/stock-to-flow/'
@@ -83,8 +83,7 @@ const INDICATORS: Record<string, Phase> = {
     indicators: [
     { id: "hashRibbons", name: "Hash Ribbons", weight: 3, description: "Tracks when miners capitulate (30d MA crosses below 60d MA) and when they recover. 'Buy' signal fires when 30d crosses back above 60d.", bullishCondition: "Buy signal active \u2014 30d MA crossed back above 60d MA after capitulation.", bearishCondition: "Deep capitulation ongoing \u2014 30d MA falling further below 60d MA.", whyItMatters: "\"When miners give up, it's possibly the most powerful Bitcoin buy signal ever.\" Has caught every major cycle bottom. Your PRIMARY entry trigger.", source: "LookIntoBitcoin, Glassnode, Capriole" },
     { id: "sopr", name: "SOPR (7d MA)", weight: 2, description: "Spent Output Profit Ratio \u2014 measures whether coins moving on-chain are being sold at a profit (>1) or loss (<1).", bullishCondition: "Recovering above 1 after spending time below. Holders no longer selling at a loss.", bearishCondition: "Below 1 and falling. Capitulation ongoing.", whyItMatters: "When SOPR recovers above 1 after a bear market, it signals the worst of the selling is over. Confirms the turn that Hash Ribbons suggests.", source: "Glassnode, CryptoQuant" },
-    { id: "lthSupply", name: "LTH Supply Trend", weight: 2, description: "Tracks coins held by Long-Term Holders (155+ days). Accumulation = LTH supply increasing. Distribution = decreasing.", bullishCondition: "Rate of change turning negative (distribution starting) \u2014 signals new capital absorbing LTH selling.", bearishCondition: "Aggressive accumulation while price falling (early bear) OR aggressive distribution at highs (late bull).", whyItMatters: "LTH distribution after accumulation signals fresh capital entering. This is healthy bull market behavior.", source: "Glassnode" },
-    { id: "realizedCapRoC", name: "Realized Cap Rate of Change", weight: 1, description: "Measures if new capital is entering (realized cap rising) or leaving (falling). Realized cap = aggregate cost basis of all BTC.", bullishCondition: "30-day rate of change turning positive. New capital entering at higher prices.", bearishCondition: "Realized cap falling. Capital leaving the network.", whyItMatters: "A rising realized cap means people are buying and holding at current prices \u2014 bullish conviction signal that upgrades your Realized Price indicator.", source: "Glassnode" }]
+    { id: "lthSupply", name: "LTH Supply Trend", weight: 2, description: "Tracks coins held by Long-Term Holders (155+ days). Accumulation = LTH supply increasing. Distribution = decreasing.", bullishCondition: "Rate of change turning negative (distribution starting) \u2014 signals new capital absorbing LTH selling.", bearishCondition: "Aggressive accumulation while price falling (early bear) OR aggressive distribution at highs (late bull).", whyItMatters: "LTH distribution after accumulation signals fresh capital entering. This is healthy bull market behavior.", source: "Glassnode" }]
   },
   phase4: {
     title: "Phase 4: Confirmation",
