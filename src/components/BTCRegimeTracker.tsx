@@ -241,6 +241,7 @@ export default function BTCRegimeTracker() {
   const [expandedIndicator, setExpandedIndicator] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [updatedBy, setUpdatedBy] = useState<string | null>(null);
+  const [btcPrice, setBtcPrice] = useState<number | null>(null);
 
   // Load data from indicator-data.json
   useEffect(() => {
@@ -258,6 +259,21 @@ export default function BTCRegimeTracker() {
       }
     };
     loadData();
+
+    const fetchBtcPrice = async () => {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        if (res.ok) {
+          const data = await res.json();
+          setBtcPrice(data.bitcoin.usd);
+        }
+      } catch (e) {
+        console.log('BTC price fetch error:', e);
+      }
+    };
+    fetchBtcPrice();
+    const priceInterval = setInterval(fetchBtcPrice, 60000);
+    return () => clearInterval(priceInterval);
   }, []);
 
   const allIndicators = Object.values(INDICATORS).flatMap((phase) => phase.indicators);
@@ -277,6 +293,11 @@ export default function BTCRegimeTracker() {
           <div>
             <h1 className="font-bold text-slate-100 tracking-tight my-[20px] mb-1 text-3xl">Time to Buy Bitcoin?</h1>
             <p className="text-slate-500 text-lg">Picking Generational Entries & Exits</p>
+            {btcPrice !== null && (
+              <p className="text-slate-300 text-xl font-mono font-semibold mt-2">
+                BTC: ${btcPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              </p>
+            )}
           </div>
         </div>
       </div>
