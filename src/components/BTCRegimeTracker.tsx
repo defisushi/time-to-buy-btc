@@ -291,7 +291,7 @@ export default function BTCRegimeTracker() {
       <div className="border-b border-slate-800/50">
         <div className="px-4 py-3">
           <div>
-            <h1 className="font-bold text-slate-100 tracking-tight my-[20px] mb-1 text-3xl">Time to Buy Bitcoin?</h1>
+            <h1 className="font-bold text-slate-100 tracking-tight mt-8 mb-1 text-3xl">Time to Buy Bitcoin?</h1>
             <p className="text-slate-500 text-lg">Generational Entries/Exits Checklist</p>
             {btcPrice !== null && (
               <p className="text-slate-300 text-xl font-mono font-semibold my-4">
