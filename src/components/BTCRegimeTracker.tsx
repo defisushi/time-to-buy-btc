@@ -366,7 +366,7 @@ export default function BTCRegimeTracker() {
                   <td className="w-4 pr-2 text-red-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">0-20%</td>
                   <td className="px-1">:</td>
-                  <td>GTFO, Baby!</td>
+                  <td>GTFO, Baby! — <span className="text-slate-500 italic">Overheated.</span></td>
                 </tr>
               </tbody>
             </table>
