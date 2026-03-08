@@ -342,31 +342,31 @@ export default function BTCRegimeTracker() {
                   <td className="w-4 pr-2 text-emerald-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">81-100%</td>
                   <td className="px-1">:</td>
-                  <td>Max Long, LFG!</td>
+                  <td>Max Long, LFG! — <span className="text-slate-500 italic">Deep Value.</span></td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-[#69c38a]">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">61-80%</td>
                   <td className="px-1">:</td>
-                  <td>Accumulation Zone</td>
+                  <td>Accumulation Zone — <span className="text-slate-500 italic">Attractive. Scale into position.</span></td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-yellow-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">41-60%</td>
                   <td className="px-1">:</td>
-                  <td>Patience...</td>
+                  <td>Patience... — <span className="text-slate-500 italic">Wait for more confirmation.</span></td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-orange-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">21-40%</td>
                   <td className="px-1">:</td>
-                  <td>Distribution Zone</td>
+                  <td>Distribution Zone — <span className="text-slate-500 italic">Risky. Scale out of position.</span></td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-red-500">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">0-20%</td>
                   <td className="px-1">:</td>
-                  <td>GTFO, Baby!</td>
+                  <td>GTFO, Baby! — <span className="text-slate-500 italic">Overheated.</span></td>
                 </tr>
               </tbody>
             </table>
