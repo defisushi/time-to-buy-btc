@@ -272,7 +272,7 @@ export default function BTCRegimeTracker() {
       }
     };
     fetchBtcPrice();
-    const priceInterval = setInterval(fetchBtcPrice, 20000);
+    const priceInterval = setInterval(fetchBtcPrice, 60000);
     return () => clearInterval(priceInterval);
   }, []);
 
