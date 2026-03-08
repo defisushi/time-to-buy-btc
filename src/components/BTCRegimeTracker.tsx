@@ -348,7 +348,7 @@ export default function BTCRegimeTracker() {
                   <td className="w-4 pr-2 text-[#69c38a]">{"\u25a0"}</td>
                   <td className="text-slate-300 font-medium whitespace-nowrap">61-80%</td>
                   <td className="px-1">:</td>
-                  <td>Accumulation Zone</td>
+                  <td>Accumulation Zone — <span className="text-slate-500 italic">Attractive. Scale into position.</span></td>
                 </tr>
                 <tr>
                   <td className="w-4 pr-2 text-yellow-500">{"\u25a0"}</td>
