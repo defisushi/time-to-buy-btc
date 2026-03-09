@@ -62,7 +62,7 @@ const INDICATORS: Record<string, Phase> = {
       bearishCondition: "NFCI > +0.5 (tight conditions). Crisis-level: NFCI > +1.0 (March 2020 spiked to +0.7).",
       neutralCondition: "NFCI between 0 and +0.5 (tighter than average but not crisis).",
       whyItMatters: "Loosening financial conditions have preceded every major BTC bull run. Unlike M2 (money quantity), this measures credit access and risk appetite. Simple: negative = loose = bullish.",
-      source: "FRED NFCI series (updated Wednesdays)"
+      source: "FRED"
     }]
   },
   phase2: {
