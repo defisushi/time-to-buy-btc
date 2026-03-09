@@ -51,7 +51,7 @@ const INDICATORS: Record<string, Phase> = {
       bearishCondition: "12-week M2 change < -1% (contracting). Or YoY growth < 0%. Central banks actively tightening.",
       neutralCondition: "12-week M2 change between -1% and +1% (flat/transitioning).",
       whyItMatters: "BTC doesn't sustainably rally against tightening global liquidity. Every major bull run coincided with M2 expansion. This tells you if a buy CAN work. Note: Effect is lagged 60-90 days.",
-      source: "BitcoinMagazinePro Global Liquidity, MacroMicro, or BGeometrics"
+      source: "CoinGlass"
     },
     {
       id: "financialConditions",
