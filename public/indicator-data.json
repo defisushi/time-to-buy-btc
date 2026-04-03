@@ -1,19 +1,19 @@
 {
-  "lastUpdated": "2026-03-20T09:00:00+08:00",
+  "lastUpdated": "2026-04-03T09:00:00+08:00",
   "updatedBy": "Perplexity Computer",
   "indicators": {
     "globalM2": "bullish",
     "financialConditions": "bullish",
     "mvrvZScore": "neutral",
-    "realizedPrice": "neutral",
+    "realizedPrice": "bearish",
     "twoHundredWeekMA": "neutral",
     "reserveRisk": "bullish",
     "puellMultiple": "neutral",
-    "ahr999": "bullish",
-    "hashRibbons": "bearish",
+    "ahr999": "bearish",
+    "hashRibbons": "bullish",
     "sopr": "bearish",
-    "lthSupply": "bullish",
-    "weeklyHigherLow": "bullish",
+    "lthSupply": "neutral",
+    "weeklyHigherLow": "bearish",
     "stablecoinSupply": "bullish",
     "halvingCycle": "neutral"
   }
