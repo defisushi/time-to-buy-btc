@@ -5,15 +5,15 @@
     "globalM2": "bullish",
     "financialConditions": "bullish",
     "mvrvZScore": "neutral",
-    "realizedPrice": "bearish",
+    "realizedPrice": "neutral",
     "twoHundredWeekMA": "neutral",
     "reserveRisk": "bullish",
     "puellMultiple": "neutral",
     "ahr999": "bullish",
-    "hashRibbons": "bullish",
+    "hashRibbons": "bearish",
     "sopr": "neutral",
     "lthSupply": "neutral",
-    "weeklyHigherLow": "bearish",
+    "weeklyHigherLow": "neutral",
     "stablecoinSupply": "bullish",
     "halvingCycle": "neutral"
   }
