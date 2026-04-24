@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-10T09:07:00+08:00",
+  "lastUpdated": "2026-04-24T09:07:00+08:00",
   "updatedBy": "",
   "indicators": {
     "globalM2": "bullish",
@@ -7,11 +7,11 @@
     "mvrvZScore": "neutral",
     "realizedPrice": "neutral",
     "twoHundredWeekMA": "neutral",
-    "reserveRisk": "bullish",
+    "reserveRisk": "neutral",
     "puellMultiple": "neutral",
     "ahr999": "bullish",
     "hashRibbons": "bearish",
-    "sopr": "neutral",
+    "sopr": "bullish",
     "lthSupply": "neutral",
     "weeklyHigherLow": "neutral",
     "stablecoinSupply": "bullish",
