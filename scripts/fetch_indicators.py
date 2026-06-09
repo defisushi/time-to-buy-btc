@@ -18,7 +18,7 @@ API keys required:
   GROK_API_KEY  — xAI console (console.x.ai)
 
 No other API keys needed:
-  CoinGecko  — free, no key
+  CoinGecko  — free, no key (weeklyHigherLow only)
   DefiLlama  — free, no key
   Halving    — date math
 """
@@ -27,43 +27,16 @@ import os
 import json
 import requests
 from datetime import datetime, timezone
-from statistics import mean
 
 GROK_API_KEY  = os.environ["GROK_API_KEY"]
 
 COINGECKO_URL = "https://api.coingecko.com/api/v3"
 DEFILLAMA_URL = "https://stablecoins.llama.fi"
-GROK_API_URL  = "https://api.x.ai/v1/chat/completions"
 
 Signal = str  # "bullish" | "neutral" | "bearish"
 
 
 # ── Direct fetchers ──────────────────────────────────────────────────────────
-
-def fetch_twoHundredWeekMA() -> Signal:
-    """
-    BTC price vs 200-week MA via CoinGecko weekly data.
-    Bullish  = at or below MA
-    Neutral  = up to 20% above MA
-    Bearish  = > 20% above MA
-    """
-    resp = requests.get(
-        f"{COINGECKO_URL}/coins/bitcoin/market_chart",
-        params={"vs_currency": "usd", "days": "1400", "interval": "weekly"},
-        timeout=30,
-    )
-    resp.raise_for_status()
-    prices = [p[1] for p in resp.json()["prices"]]
-    if len(prices) < 200:
-        return "neutral"
-    ma = mean(prices[-200:])
-    pct_above = (prices[-1] - ma) / ma * 100
-    if pct_above <= 0:
-        return "bullish"
-    if pct_above < 20:
-        return "neutral"
-    return "bearish"
-
 
 def fetch_weeklyHigherLow() -> Signal:
     """
@@ -151,6 +124,7 @@ globalM2:           bullish = 12-week M2 change > +1% (expanding) | neutral = -1
 financialConditions: bullish = NFCI < 0 (loose) | neutral = 0 to +0.5 | bearish = > +0.5 (tight)
 mvrvZScore:         bullish = below 0.5 | neutral = 0.5-2.5 | bearish = above 2.5
 realizedPrice:      bullish = price below or <10% above realized price | neutral = 10-50% above | bearish = >50% above
+twoHundredWeekMA:   bullish = price at or below 200-week MA | neutral = up to 20% above 200-week MA | bearish = more than 20% above 200-week MA
 reserveRisk:        bullish = below 0.001 | neutral = 0.001-0.02 | bearish = above 0.02
 puellMultiple:      bullish = below 0.5 | neutral = 0.5-1.5 | bearish = above 1.5
 ahr999:             bullish = below 0.45 | neutral = 0.45-1.2 | bearish = above 1.2
@@ -164,6 +138,7 @@ Return this exact JSON structure:
   "financialConditions": "...",
   "mvrvZScore": "...",
   "realizedPrice": "...",
+  "twoHundredWeekMA": "...",
   "reserveRisk": "...",
   "puellMultiple": "...",
   "ahr999": "...",
@@ -219,7 +194,8 @@ def fetch_grok_indicators() -> dict[str, Signal]:
     valid = {"bullish", "neutral", "bearish"}
     grok_keys = [
         "globalM2", "financialConditions", "mvrvZScore", "realizedPrice",
-        "reserveRisk", "puellMultiple", "ahr999", "hashRibbons", "sopr", "lthSupply"
+        "twoHundredWeekMA", "reserveRisk", "puellMultiple", "ahr999",
+        "hashRibbons", "sopr", "lthSupply"
     ]
     return {k: raw[k] if raw.get(k) in valid else "neutral" for k in grok_keys}
 
@@ -234,7 +210,6 @@ def run():
 
     # Direct fetchers — no API key needed
     direct = {
-        "twoHundredWeekMA": fetch_twoHundredWeekMA,
         "weeklyHigherLow":  fetch_weeklyHigherLow,
         "stablecoinSupply": fetch_stablecoinSupply,
         "halvingCycle":     fetch_halvingCycle,
@@ -249,7 +224,7 @@ def run():
             print(f"  ✗ {key}: FAILED ({e}) → neutral")
             indicators[key] = "neutral"
 
-    # Grok — single call for all 10 remaining indicators
+    # Grok — single call for all 11 remaining indicators
     print("  Querying Grok...")
     try:
         grok = fetch_grok_indicators()
@@ -259,7 +234,8 @@ def run():
     except Exception as e:
         print(f"  ✗ Grok FAILED ({e}) → all neutral")
         for key in ["globalM2", "financialConditions", "mvrvZScore", "realizedPrice",
-                    "reserveRisk", "puellMultiple", "ahr999", "hashRibbons", "sopr", "lthSupply"]:
+                    "twoHundredWeekMA", "reserveRisk", "puellMultiple", "ahr999",
+                    "hashRibbons", "sopr", "lthSupply"]:
             indicators[key] = "neutral"
 
     # Write output matching indicator-data.json schema exactly
@@ -280,3 +256,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+
