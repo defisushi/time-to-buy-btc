@@ -247,7 +247,7 @@ export default function BTCRegimeTracker() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}indicator-data.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}indicator-data.json?t=${Date.now()}`);
         if (res.ok) {
           const data = await res.json();
           if (data.indicators) setIndicators(data.indicators);
