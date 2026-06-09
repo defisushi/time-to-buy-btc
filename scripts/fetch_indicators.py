@@ -3,7 +3,7 @@
 BTC Conviction Score - Weekly Indicator Fetcher
 ================================================
 Outputs: public/indicator-data.json
- 
+
 Schema matches BTCRegimeTracker.tsx exactly:
 {
   "lastUpdated": "...",
@@ -13,33 +13,33 @@ Schema matches BTCRegimeTracker.tsx exactly:
     ...
   }
 }
- 
+
 API keys required:
   GROK_API_KEY  — xAI console (console.x.ai)
- 
+
 No other API keys needed:
   CoinGecko  — free, no key
   DefiLlama  — free, no key
   Halving    — date math
 """
- 
+
 import os
 import json
 import requests
 from datetime import datetime, timezone
 from statistics import mean
- 
+
 GROK_API_KEY  = os.environ["GROK_API_KEY"]
- 
+
 COINGECKO_URL = "https://api.coingecko.com/api/v3"
 DEFILLAMA_URL = "https://stablecoins.llama.fi"
 GROK_API_URL  = "https://api.x.ai/v1/chat/completions"
- 
+
 Signal = str  # "bullish" | "neutral" | "bearish"
- 
- 
+
+
 # ── Direct fetchers ──────────────────────────────────────────────────────────
- 
+
 def fetch_twoHundredWeekMA() -> Signal:
     """
     BTC price vs 200-week MA via CoinGecko weekly data.
@@ -63,8 +63,8 @@ def fetch_twoHundredWeekMA() -> Signal:
     if pct_above < 20:
         return "neutral"
     return "bearish"
- 
- 
+
+
 def fetch_weeklyHigherLow() -> Signal:
     """
     Last 3 weekly lows from CoinGecko OHLC.
@@ -87,8 +87,8 @@ def fetch_weeklyHigherLow() -> Signal:
     if lows[2] < lows[1] < lows[0]:
         return "bearish"
     return "neutral"
- 
- 
+
+
 def fetch_stablecoinSupply() -> Signal:
     """
     Stablecoin supply 30d change via DefiLlama.
@@ -99,10 +99,10 @@ def fetch_stablecoinSupply() -> Signal:
     resp = requests.get(f"{DEFILLAMA_URL}/stablecoins?includePrices=true", timeout=20)
     resp.raise_for_status()
     assets = resp.json().get("peggedAssets", [])
- 
+
     now  = sum(float(s.get("circulating", {}).get("peggedUSD", 0) or 0) for s in assets)
     prev = sum(float(s.get("circulatingPrevMonth", {}).get("peggedUSD", 0) or 0) for s in assets)
- 
+
     if prev == 0:
         return "neutral"
     pct = (now - prev) / prev * 100
@@ -111,8 +111,8 @@ def fetch_stablecoinSupply() -> Signal:
     if pct >= 0:
         return "neutral"
     return "bearish"
- 
- 
+
+
 def fetch_halvingCycle() -> Signal:
     """
     Months since April 19 2024 halving.
@@ -127,12 +127,12 @@ def fetch_halvingCycle() -> Signal:
     if months < 6 or (18 < months <= 30):
         return "neutral"
     return "bearish"
- 
- 
+
+
 # ── Grok fetcher ─────────────────────────────────────────────────────────────
- 
+
 GROK_SYSTEM = """You are a data extraction assistant. Your ONLY job is to return a JSON object.
- 
+
 RULES:
 1. Return ONLY valid JSON. No explanation, no markdown, no backticks.
 2. Each value must be exactly one of: "bullish", "neutral", "bearish"
@@ -140,13 +140,13 @@ RULES:
 4. NEVER fabricate. Base signals on actual recent data from X/Twitter analysts,
    Glassnode, LookIntoBitcoin, CryptoQuant, FRED, Chicago Fed, macro sources, etc.
 """
- 
+
 GROK_USER = f"""Today is {datetime.now(timezone.utc).strftime("%Y-%m-%d")}.
- 
+
 Search for the most recent readings and classify each indicator as bullish, neutral, or bearish.
- 
+
 Use these exact thresholds:
- 
+
 globalM2:           bullish = 12-week M2 change > +1% (expanding) | neutral = -1% to +1% | bearish = < -1% (contracting)
 financialConditions: bullish = NFCI < 0 (loose) | neutral = 0 to +0.5 | bearish = > +0.5 (tight)
 mvrvZScore:         bullish = below 0.5 | neutral = 0.5-2.5 | bearish = above 2.5
@@ -157,7 +157,7 @@ ahr999:             bullish = below 0.45 | neutral = 0.45-1.2 | bearish = above 
 hashRibbons:        bullish = buy signal (30d crossed above 60d after capitulation) | neutral = no signal | bearish = capitulation ongoing (30d falling below 60d)
 sopr:               bullish = 7d MA recovering above 1 | neutral = hovering near 1 | bearish = below 1 and falling
 lthSupply:          bullish = LTH supply increasing (accumulation) | neutral = flat | bearish = LTH supply decreasing (distribution)
- 
+
 Return this exact JSON structure:
 {{
   "globalM2": "...",
@@ -171,38 +171,50 @@ Return this exact JSON structure:
   "sopr": "...",
   "lthSupply": "..."
 }}"""
- 
- 
+
+
 def fetch_grok_indicators() -> dict[str, Signal]:
+    # Uses xAI Responses API with web_search tool
+    # (chat/completions search_parameters was deprecated Jan 2026)
     resp = requests.post(
-        GROK_API_URL,
+        "https://api.x.ai/v1/responses",
         headers={
             "Authorization": f"Bearer {GROK_API_KEY}",
             "Content-Type":  "application/json",
         },
         json={
-            "model":       "grok-3",
-            "messages": [
+            "model": "grok-3",
+            "input": [
                 {"role": "system", "content": GROK_SYSTEM},
                 {"role": "user",   "content": GROK_USER},
             ],
-            "max_tokens":  300,
+            "tools":       [{"type": "web_search"}],
             "temperature": 0,
         },
-        timeout=60,
+        timeout=90,
     )
     resp.raise_for_status()
-    content = resp.json()["choices"][0]["message"]["content"].strip()
- 
-    # Strip markdown fences if Grok wraps response
+
+    # Responses API returns output as a list of content blocks
+    output = resp.json().get("output", [])
+    content = ""
+    for block in output:
+        if block.get("type") == "message":
+            for part in block.get("content", []):
+                if part.get("type") == "output_text":
+                    content += part.get("text", "")
+
+    content = content.strip()
+
+    # Strip markdown fences if present
     if content.startswith("```"):
         content = content.split("```")[1]
         if content.startswith("json"):
             content = content[4:]
     content = content.strip()
- 
+
     raw = json.loads(content)
- 
+
     # Validate — only accept known signal values, default unknown to neutral
     valid = {"bullish", "neutral", "bearish"}
     grok_keys = [
@@ -210,16 +222,16 @@ def fetch_grok_indicators() -> dict[str, Signal]:
         "reserveRisk", "puellMultiple", "ahr999", "hashRibbons", "sopr", "lthSupply"
     ]
     return {k: raw[k] if raw.get(k) in valid else "neutral" for k in grok_keys}
- 
- 
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
- 
+
 def run():
     now = datetime.now(timezone.utc).isoformat()
     print(f"[{now}] Fetching indicators...")
- 
+
     indicators: dict[str, Signal] = {}
- 
+
     # Direct fetchers — no API key needed
     direct = {
         "twoHundredWeekMA": fetch_twoHundredWeekMA,
@@ -227,7 +239,7 @@ def run():
         "stablecoinSupply": fetch_stablecoinSupply,
         "halvingCycle":     fetch_halvingCycle,
     }
- 
+
     for key, fn in direct.items():
         try:
             result = fn()
@@ -236,7 +248,7 @@ def run():
         except Exception as e:
             print(f"  ✗ {key}: FAILED ({e}) → neutral")
             indicators[key] = "neutral"
- 
+
     # Grok — single call for all 10 remaining indicators
     print("  Querying Grok...")
     try:
@@ -249,23 +261,22 @@ def run():
         for key in ["globalM2", "financialConditions", "mvrvZScore", "realizedPrice",
                     "reserveRisk", "puellMultiple", "ahr999", "hashRibbons", "sopr", "lthSupply"]:
             indicators[key] = "neutral"
- 
+
     # Write output matching indicator-data.json schema exactly
     output = {
         "lastUpdated": now,
         "updatedBy":   "automated",
         "indicators":  indicators,
     }
- 
+
     out_path = os.path.join(os.path.dirname(__file__), "..", "public", "indicator-data.json")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
- 
+
     print(f"\n  Wrote public/indicator-data.json")
     print(f"  Indicators: {indicators}")
- 
- 
+
+
 if __name__ == "__main__":
     run()
- 
