@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-06-12T05:24:11.262885+00:00",
+  "lastUpdated": "2026-06-19T06:05:18.945419+00:00",
   "updatedBy": "automated",
   "indicators": {
-    "weeklyHigherLow": "bullish",
+    "weeklyHigherLow": "neutral",
     "stablecoinSupply": "bearish",
     "halvingCycle": "neutral",
-    "globalM2": "neutral",
+    "globalM2": "bullish",
     "financialConditions": "bullish",
     "mvrvZScore": "bullish",
     "realizedPrice": "neutral",
