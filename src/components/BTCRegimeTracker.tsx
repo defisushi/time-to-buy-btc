@@ -339,11 +339,11 @@ export default function BTCRegimeTracker() {
             <table className="border-collapse table-auto w-auto">
               <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
                 {[
-                  { range: '81-100%', label: 'Deep Value', colorClass: 'text-emerald-500', min: 81 },
-                  { range: '61-80%', label: 'Accumulation Zone', colorClass: 'text-[#69c38a]', min: 61 },
-                  { range: '41-60%', label: 'Patience...', colorClass: 'text-yellow-500', min: 41 },
-                  { range: '21-40%', label: 'Distribution Zone', colorClass: 'text-orange-500', min: 21 },
-                  { range: '0-20%', label: 'Overheated', colorClass: 'text-red-500', min: 0 },
+                  { range: '85-100%', label: 'Deep Value', colorClass: 'text-emerald-500', min: 85 },
+                  { range: '76-84%', label: 'Accumulation Zone', colorClass: 'text-[#69c38a]', min: 76 },
+                  { range: '56-75%', label: 'Patience...', colorClass: 'text-yellow-500', min: 56 },
+                  { range: '31-55%', label: 'Distribution Zone', colorClass: 'text-orange-500', min: 31 },
+                  { range: '0-30%', label: 'Overheated', colorClass: 'text-red-500', min: 0 },
                 ].map((tier) => (
                     <tr key={tier.range}>
                       <td className={`w-4 pr-2 ${tier.colorClass}`}>{"\u25a0"}</td>
