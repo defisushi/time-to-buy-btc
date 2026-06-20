@@ -103,11 +103,9 @@ const STATUS_CONFIG: Record<Status, {color: string;textColor: string;bgColor: st
 };
 
 const getRegimeSignal = (percentage: number) => {
-  if (percentage >= 85) return { label: 'Deep Value', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Max long, LFG!' };
-  if (percentage >= 76) return { label: 'Accumulation Zone', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Attractive. Scale into position.' };
-  if (percentage >= 56) return { label: 'Patience...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So-so. Wait for more confirmation.' };
-  if (percentage >= 31) return { label: 'Distribution Zone', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Risky. Scale out of positions.' };
-  return { label: 'Overheated', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'GTFO, baby!' };
+  if (percentage >= 85) return { label: 'Generational Bottoms', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Max long, LFG!' };
+  if (percentage >= 31) return { label: 'Mid-Cycle', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So-so. Wait for more confirmation.' };
+  return { label: 'Historical Tops', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'GTFO, baby!' };
 };
 
 const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: Indicator;status: Status;expanded: boolean;onToggle: () => void;}) => {
@@ -339,11 +337,9 @@ export default function BTCRegimeTracker() {
             <table className="border-collapse table-auto w-auto">
               <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
                 {[
-                  { range: '85-100%', label: 'Deep Value', colorClass: 'text-emerald-500', min: 85 },
-                  { range: '76-84%', label: 'Accumulation Zone', colorClass: 'text-[#69c38a]', min: 76 },
-                  { range: '56-75%', label: 'Patience...', colorClass: 'text-yellow-500', min: 56 },
-                  { range: '31-55%', label: 'Distribution Zone', colorClass: 'text-orange-500', min: 31 },
-                  { range: '0-30%', label: 'Overheated', colorClass: 'text-red-500', min: 0 },
+                  { range: '85-100%', label: 'Generational Bottoms', colorClass: 'text-emerald-500', min: 85 },
+                  { range: '31-84%', label: 'Mid-Cycle', colorClass: 'text-yellow-500', min: 31 },
+                  { range: '0-30%', label: 'Historical Tops', colorClass: 'text-red-500', min: 0 },
                 ].map((tier) => (
                     <tr key={tier.range}>
                       <td className={`w-4 pr-2 ${tier.colorClass}`}>{"\u25a0"}</td>
