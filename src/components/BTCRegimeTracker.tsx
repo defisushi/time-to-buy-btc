@@ -103,10 +103,10 @@ const STATUS_CONFIG: Record<Status, {color: string;textColor: string;bgColor: st
 };
 
 const getRegimeSignal = (percentage: number) => {
-  if (percentage >= 81) return { label: 'Deep Value', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Max long, LFG!' };
-  if (percentage >= 61) return { label: 'Accumulation Zone', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Attractive. Scale into position.' };
-  if (percentage >= 41) return { label: 'Patience...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So-so. Wait for more confirmation.' };
-  if (percentage >= 21) return { label: 'Distribution Zone', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Risky. Scale out of positions.' };
+  if (percentage >= 86) return { label: 'Deep Value', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Max long, LFG!' };
+  if (percentage >= 76) return { label: 'Accumulation Zone', color: 'from-emerald-600 to-amber-500', bgGlow: 'shadow-emerald-500/20', description: 'Attractive. Scale into position.' };
+  if (percentage >= 56) return { label: 'Patience...', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So-so. Wait for more confirmation.' };
+  if (percentage >= 31) return { label: 'Distribution Zone', color: 'from-amber-600 to-red-500', bgGlow: 'shadow-amber-500/20', description: 'Risky. Scale out of positions.' };
   return { label: 'Overheated', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'GTFO, baby!' };
 };
 
