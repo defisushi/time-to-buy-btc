@@ -379,8 +379,8 @@ export default function BTCRegimeTracker() {
             <svg className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </summary>
           <div className="px-4 pb-4 text-sm text-slate-400 space-y-3 leading-relaxed">
-            <p><span className="text-slate-300 font-medium">Phase 1: Macro</span><br />Must be neutral or bullish to have permission to play.</p>
-            <p><span className="text-slate-300 font-medium">Phase 2: Value</span><br />Tells you if BTC is cheap. Not always a buy signal yet.</p>
+            <p><span className="text-slate-300 font-medium">Phase 1: Macro</span><br />Must be neutral / bullish for permission to play.</p>
+            <p><span className="text-slate-300 font-medium">Phase 2: Value</span><br />Tells you if BTC is cheap. Not always a buy signal.</p>
             <p><span className="text-slate-300 font-medium">Phase 3: Exhaustion</span><br />Your primary trigger, especially Hash Ribbons.</p>
             <p><span className="text-slate-300 font-medium">Phase 4: Confirmation</span><br />Additional signs that support size.</p>
           </div>
