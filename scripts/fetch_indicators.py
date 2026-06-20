@@ -64,21 +64,35 @@ def fetch_weeklyHigherLow() -> Signal:
 
 def fetch_stablecoinSupply() -> Signal:
     """
-    Stablecoin supply 30d change via DefiLlama.
+    Stablecoin supply 90d change via DefiLlama total supply chart.
     Bullish  = > +3% growth
     Neutral  = 0 to +3%
     Bearish  = negative
     """
-    resp = requests.get(f"{DEFILLAMA_URL}/stablecoins?includePrices=true", timeout=20)
+    resp = requests.get(f"{DEFILLAMA_URL}/stablecoinchart/all", timeout=20)
     resp.raise_for_status()
-    assets = resp.json().get("peggedAssets", [])
+    data = resp.json()  # list of {"date": unix_timestamp, "totalCirculatingUSD": {...}}
 
-    now  = sum(float(s.get("circulating", {}).get("peggedUSD", 0) or 0) for s in assets)
-    prev = sum(float(s.get("circulatingPrevMonth", {}).get("peggedUSD", 0) or 0) for s in assets)
-
-    if prev == 0:
+    if len(data) < 2:
         return "neutral"
-    pct = (now - prev) / prev * 100
+
+    # Find the most recent entry and the entry ~90 days ago
+    now_entry = data[-1]
+    target_ts = now_entry["date"] - 90 * 24 * 3600
+    prev_entry = min(data, key=lambda x: abs(x["date"] - target_ts))
+
+    def total_usd(entry):
+        val = entry.get("totalCirculatingUSD", {})
+        if isinstance(val, dict):
+            return sum(float(v or 0) for v in val.values())
+        return float(val or 0)
+
+    now_usd  = total_usd(now_entry)
+    prev_usd = total_usd(prev_entry)
+
+    if prev_usd == 0:
+        return "neutral"
+    pct = (now_usd - prev_usd) / prev_usd * 100
     if pct > 3:
         return "bullish"
     if pct >= 0:
