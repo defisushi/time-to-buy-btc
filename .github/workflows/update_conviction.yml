@@ -36,3 +36,9 @@ jobs:
           git add public/indicator-data.json
           git diff --staged --quiet || git commit -m "chore: update indicators [$(date -u '+%Y-%m-%d')]"
           git push
+
+      - name: Trigger deploy
+        run: |
+          gh workflow run deploy.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
