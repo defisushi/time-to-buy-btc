@@ -2,7 +2,7 @@ name: Update BTC Conviction Score
 
 on:
   schedule:
-    - cron: "0 1 * * 5"   # Every Friday 9:00 AM GMT+8
+    - cron: "0 1 * * 6"   # Every Saturday 9:00 AM GMT+8
   workflow_dispatch:        # Manual trigger from Actions UI
 
 jobs:
