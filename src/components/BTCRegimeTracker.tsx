@@ -338,7 +338,7 @@ export default function BTCRegimeTracker() {
               <tbody className="[&>tr]:align-top [&>tr:not(:last-child)]:border-0 [&>tr:not(:last-child)]:border-transparent [&>tr:not(:last-child)]:[&>td]:pb-1.5">
                 {[
                   { range: '85-100%', label: 'Generational Bottoms', colorClass: 'text-emerald-500', min: 85 },
-                  { range: '31-84%', label: 'Mid-Cycle', colorClass: 'text-yellow-500', min: 31 },
+                  { range: '31-84%', label: 'No Signal', colorClass: 'text-yellow-500', min: 31 },
                   { range: '0-30%', label: 'Historical Tops', colorClass: 'text-red-500', min: 0 },
                 ].map((tier) => (
                     <tr key={tier.range}>
