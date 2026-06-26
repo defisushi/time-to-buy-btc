@@ -103,9 +103,9 @@ const STATUS_CONFIG: Record<Status, {color: string;textColor: string;bgColor: st
 };
 
 const getRegimeSignal = (percentage: number) => {
-  if (percentage >= 85) return { label: 'Generational Bottoms', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Max long, LFG!' };
-  if (percentage >= 31) return { label: 'No Signal', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'So-so. Wait for more confirmation.' };
-  return { label: 'Historical Tops', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'GTFO, baby!' };
+  if (percentage >= 85) return { label: 'Generational Bottom', color: 'from-emerald-600 to-emerald-400', bgGlow: 'shadow-emerald-500/30', description: 'Max long, LFG!' };
+  if (percentage >= 31) return { label: 'No Signal', color: 'from-amber-600 to-amber-400', bgGlow: 'shadow-amber-500/20', description: 'Meh. Wait for more confirmation.' };
+  return { label: 'Historical Top', color: 'from-red-600 to-red-400', bgGlow: 'shadow-red-500/30', description: 'GTFO, baby!' };
 };
 
 const IndicatorCard = ({ indicator, status, expanded, onToggle }: {indicator: Indicator;status: Status;expanded: boolean;onToggle: () => void;}) => {
