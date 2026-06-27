@@ -2,7 +2,7 @@ name: Update BTC Conviction Score
 
 on:
   schedule:
-    - cron: "0 1 * * 6"   # Every Saturday 9:00 AM GMT+8
+    - cron: "0 1 * * 0"   # Every Sunday 9:00 AM GMT+8
   workflow_dispatch:        # Manual trigger from Actions UI
 
 jobs:
@@ -23,18 +23,23 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests pandas numpy scipy statsmodels beautifulsoup4 lxml
 
       - name: Fetch indicators
         env:
           GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
         run: python scripts/fetch_indicators.py
 
-      - name: Commit updated indicator-data.json
+      - name: Fetch ETF/options data
+        run: python scripts/etf_options/fetch_etf_options.py
+
+      - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/indicator-data.json
+          git add public/etf-options-data.json
+          git add data/etf_options_weekly.csv data/options_snapshot_latest.json
           git diff --staged --quiet || git commit -m "chore: update indicators [$(date -u '+%Y-%m-%d')]"
           git push
 
