@@ -1,0 +1,6 @@
+[
+  { "instrument_name": "BTC-27JUN25-60000-C", "expiration_timestamp": 1750982400000 },
+  { "instrument_name": "BTC-27JUN25-55000-P", "expiration_timestamp": 1750982400000 },
+  { "instrument_name": "BTC-PERPETUAL", "expiration_timestamp": 1750982400000 }
+]
+

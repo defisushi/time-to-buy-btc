@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import SiteNav from './SiteNav';
 
 // Chart source URLs for each indicator
 const DATA_SOURCES: Record<string, { name: string; url?: string }> = {
@@ -288,6 +289,7 @@ export default function BTCRegimeTracker() {
       {/* Header */}
       <div className="border-b border-slate-800/50">
         <div className="px-4 py-3">
+          <SiteNav />
           <div>
             <h1 className="font-bold text-slate-100 tracking-tight mt-8 mb-1 text-3xl">Time to Buy Bitcoin?</h1>
             <p className="text-slate-500 text-lg">Generational Entry Checklist</p>
