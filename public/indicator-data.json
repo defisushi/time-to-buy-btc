@@ -1,15 +1,15 @@
 {
-  "lastUpdated": "2026-08-02T04:21:13.992306+00:00",
+  "lastUpdated": "2026-08-09T02:59:52.097062+00:00",
   "updatedBy": "automated",
   "indicators": {
-    "weeklyHigherLow": "bullish",
+    "weeklyHigherLow": "neutral",
     "stablecoinSupply": "neutral",
     "halvingCycle": "neutral",
     "globalM2": "neutral",
     "financialConditions": "neutral",
     "mvrvZScore": "bullish",
     "realizedPrice": "neutral",
-    "twoHundredWeekMA": "neutral",
+    "twoHundredWeekMA": "bullish",
     "reserveRisk": "neutral",
     "puellMultiple": "neutral",
     "ahr999": "neutral",
