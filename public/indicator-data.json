@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-11T06:46:11.448709+00:00",
+  "lastUpdated": "2026-10-18T01:00:31.989760+00:00",
   "updatedBy": "automated",
   "indicators": {
     "weeklyHigherLow": "bearish",
@@ -10,10 +10,10 @@
     "mvrvZScore": "neutral",
     "realizedPrice": "bearish",
     "twoHundredWeekMA": "bearish",
-    "reserveRisk": "neutral",
+    "reserveRisk": "bullish",
     "puellMultiple": "neutral",
     "ahr999": "neutral",
-    "hashRibbons": "neutral",
+    "hashRibbons": "bullish",
     "sopr": "bullish",
     "lthSupply": "neutral"
   }
