@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-10-18T01:00:31.989760+00:00",
+  "lastUpdated": "2026-10-18T05:22:20.025584+00:00",
   "updatedBy": "automated",
   "indicators": {
-    "weeklyHigherLow": "bearish",
+    "weeklyHigherLow": "neutral",
     "stablecoinSupply": "neutral",
     "halvingCycle": "neutral",
     "globalM2": "bullish",
@@ -13,8 +13,8 @@
     "reserveRisk": "bullish",
     "puellMultiple": "neutral",
     "ahr999": "neutral",
-    "hashRibbons": "bullish",
-    "sopr": "bullish",
+    "hashRibbons": "neutral",
+    "sopr": "neutral",
     "lthSupply": "neutral"
   }
 }
